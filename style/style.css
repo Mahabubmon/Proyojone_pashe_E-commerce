@@ -53,10 +53,8 @@ body{
     display: grid;
     width: 96%;
     margin: 0 auto;
-    background: red;
     gap: 1.8rem;
-    grid-template-columns: 14rem ;
-
+    grid-template-columns: 14rem auto 23rem;
 }
 
 a{
@@ -65,7 +63,7 @@ a{
 
 img{
     display: block;
-    width: 100%;
+    width:100%;
 }
 
 h1{
@@ -132,6 +130,31 @@ b{
 
 }
 aside{
+    height: 100vh;
+    background:;
+   
 
 }
+aside .top{
+    background: white;
+    display: flex;
+    align-items: center;
+}
+
+
+
+/* aside.logo{
+    display: flex;
+    gap: 0.8rem;
+}
+
+aside .logo img {
+    width: 2rem;
+    height: 2erm;
+}
+
+aside .close{
+    display: none;
+} */
+
 
