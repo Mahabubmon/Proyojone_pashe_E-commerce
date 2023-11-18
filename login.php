@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="conatainer">
+    <div class="conatainer d-flex justify-content-center align-items-center vh-100">
         <div class="row">
             <form>
                 <div class="form-group">
