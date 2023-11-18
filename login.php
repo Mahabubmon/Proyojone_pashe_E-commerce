@@ -11,12 +11,14 @@
 
 <body>
     <div class="conatainer d-flex justify-content-center align-items-center vh-100">
-        <div class="row">
-            <div class="card" style="width: 25rem; height: 15rem;">
+        <div class=" row">
+
+            <div class="card" style="width: 25rem; height: 15rem; background-color: Aqua;">
+                <h3 class="text text-center bg-light">Login</h3>
                 <form>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
+                        <label for="Email">Email address</label>
+                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                             placeholder="Enter email">
 
                     </div>
