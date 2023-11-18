@@ -14,7 +14,7 @@
         <div class=" row">
 
             <div class="card" style="width: 25rem; height: 15rem; background-color: Aqua;">
-                <h3 class="text text-center bg-light">Login</h3>
+                <h3 class="text text-center">Login</h3>
                 <form>
                     <div class="form-group">
                         <label for="Email">Email address</label>
@@ -32,12 +32,13 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div> -->
-                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Login</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;"
+                        onclick=login();>Login</button>
                 </form>
             </div>
         </div>
     </div>
-
+    <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
