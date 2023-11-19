@@ -11,7 +11,7 @@ try {
         $password
     );
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
+    // echo "Connected successfully";
 } catch (PDOException $e) {
     echo "Connection faild:" . $e->getMessage();
 }

@@ -19,12 +19,12 @@
                     <div class="form-group">
                         <label for="Email">Email address</label>
                         <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                            placeholder="Enter email">
+                            placeholder="Enter email" required>
 
                     </div>
                     <div class="form-group">
                         <label for="Password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" required>
                         <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone
                             else.</small>
                     </div>
