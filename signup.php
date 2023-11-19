@@ -28,6 +28,24 @@
                                     <label for="floatingInput">Email address</label>
                                 </div>
                             </div>
+                            <div class="col-sm-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="fname" class="form-control" id="fname" placeholder="First Name">
+                                    <label for="floatingInput">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="lname" class="form-control" id="lname" placeholder="Last Name">
+                                    <label for="floatingInput">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="pass" placeholder="Password">
+                                    <label for="floatingInput">Password</label>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
