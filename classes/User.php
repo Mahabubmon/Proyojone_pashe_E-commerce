@@ -59,6 +59,22 @@ class User extends Basic
                 $error[] = 'Invalid Entry for Email.ie- username@domain.com';
             }
         }
+        $sql = "SELECT count(*) from users WHERE userName:userName";
+        $stmt = $this->dbConnection->prepare($sql);
+        $stmt->bindParam(':userName', $userName, PDO::PARAM_STR);
+        $stmt->execute();
+        $count_username = $stmt->fetchColumn();
+        if ($count_username > 0) {
+            $error[] = 'Username already exits';
+        }
+        $sql = "SELECT count(*) from users WHERE userName:userName";
+        $stmt = $this->dbConnection->prepare($sql);
+        $stmt->bindParam(':userName', $userName, PDO::PARAM_STR);
+        $stmt->execute();
+        $count_username = $stmt->fetchColumn();
+        if ($count_username > 0) {
+            $error[] = 'Username already exits';
+        }
     }
 }
 ?>
