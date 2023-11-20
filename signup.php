@@ -25,12 +25,13 @@
                     <?php
                     if (isset($_POST['submit_form'])) {
 
-                        $fname = $_POST[''];
-                        $lname = $_POST[''];
-                        $username = $_POST[''];
-                        $email = $_POST[''];
-                        $password = $_POST[''];
-                        $passwordConfirm = $_POST[''];
+                        $fname = $_POST['fname'];
+                        $lname = $_POST['lname'];
+                        $userName = $_POST['userName'];
+                        $email = $_POST['email'];
+                        $password = $_POST['password'];
+                        $passwordConfirm = $_POST['passwordConfirm'];
+                        $error = $getUser->validation($fname, $lname, $userName, $email, $password, $passwordConfirm);
                     }
                     ?>
                     <form action="" method="post">
