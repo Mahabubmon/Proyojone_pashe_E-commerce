@@ -21,15 +21,7 @@
                     <img src="image/needIndeed.png" class="logo img-fluid" alt=""><br>
                     <form action="" method="post">
                         <div class="row">
-                            <div class="col-sm-6 mb-3">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com" value="<?php if (isset($error)) {
-                                            echo $email;
-                                        } ?>">
-                                    <label for="floatingInput">Email address</label>
-                                </div>
-                            </div>
+
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
                                     <input type="fname" class="form-control" id="fname" placeholder="First Name" value="<?php if (isset($error)) {
@@ -46,13 +38,42 @@
                                     <label for="floatingInput">Last Name</label>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="userName" class="form-control" id="userName"
+                                        placeholder="name@example.com" value="<?php if (isset($error)) {
+                                            echo $userName;
+                                        } ?>">
+                                    <label for="floatingInput">User Name</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="floatingInput"
+                                        placeholder="name@example.com" value="<?php if (isset($error)) {
+                                            echo $email;
+                                        } ?>">
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
                                     <input type="password" class="form-control" id="pass" placeholder="Password">
                                     <label for="floatingInput">Password</label>
                                 </div>
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" id="conPass"
+                                            placeholder="Confirm Password">
+                                        <label for="floatingInput">Confirm Password</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
