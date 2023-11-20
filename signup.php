@@ -1,3 +1,4 @@
+<?php require_once 'autoload.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +22,17 @@
             <div class="col-sm-8">
                 <div class="form_container">
                     <img src="image/needIndeed.png" class="logo img-fluid" alt=""><br>
+                    <?php
+                    if (isset($_POST['submit_form'])) {
+
+                        $fname = $_POST[''];
+                        $lname = $_POST[''];
+                        $username = $_POST[''];
+                        $email = $_POST[''];
+                        $password = $_POST[''];
+                        $passwordConfirm = $_POST[''];
+                    }
+                    ?>
                     <form action="" method="post">
                         <div class="row">
 
@@ -54,8 +66,8 @@
                             </div>
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com" value="<?php if (isset($error)) {
+                                    <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                        value="<?php if (isset($error)) {
                                             echo $email;
                                         } ?>">
                                     <label for="floatingInput">Email address</label>
@@ -65,13 +77,13 @@
                         <div class="row mb-3">
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="pass" placeholder="Password">
+                                    <input type="password" class="form-control" id="password" placeholder="Password">
                                     <label for="floatingInput">Password</label>
                                 </div>
                             </div>
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" id="conPass"
+                                    <input type="password" class="form-control" id="passwordConfirm"
                                         placeholder="Confirm Password">
                                     <label for="floatingInput">Confirm Password</label>
                                 </div>
