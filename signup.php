@@ -24,19 +24,25 @@
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
                                     <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com">
+                                        placeholder="name@example.com" value="<?php if (isset($error)) {
+                                            echo $email;
+                                        } ?>">
                                     <label for="floatingInput">Email address</label>
                                 </div>
                             </div>
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
-                                    <input type="fname" class="form-control" id="fname" placeholder="First Name">
+                                    <input type="fname" class="form-control" id="fname" placeholder="First Name" value="<?php if (isset($error)) {
+                                        echo $fname;
+                                    } ?>">
                                     <label for="floatingInput">First Name</label>
                                 </div>
                             </div>
                             <div class="col-sm-6 mb-3">
                                 <div class="form-floating">
-                                    <input type="lname" class="form-control" id="lname" placeholder="Last Name">
+                                    <input type="lname" class="form-control" id="lname" placeholder="Last Name" value="<?php if (isset($error)) {
+                                        echo $lname;
+                                    } ?>">
                                     <label for="floatingInput">Last Name</label>
                                 </div>
                             </div>
