@@ -75,6 +75,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-4"> </div>
+                            <div class="col-sm-4" style="text-align: center;">
+                                <button type="submit" class="btn form_btn btn-primary"
+                                    name="submit_form">Signup</button>
+
+                            </div>
+                            <div class="col-sm-4"> </div>
+                        </div>
                     </form>
                 </div>
             </div>
