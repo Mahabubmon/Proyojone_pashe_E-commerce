@@ -66,14 +66,15 @@
                                     <input type="password" class="form-control" id="pass" placeholder="Password">
                                     <label for="floatingInput">Password</label>
                                 </div>
-                                <div class="col-sm-6 mb-3">
-                                    <div class="form-floating">
-                                        <input type="password" class="form-control" id="conPass"
-                                            placeholder="Confirm Password">
-                                        <label for="floatingInput">Confirm Password</label>
-                                    </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="conPass"
+                                        placeholder="Confirm Password">
+                                    <label for="floatingInput">Confirm Password</label>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -81,6 +82,7 @@
             </div>
         </div>
     </div>
+
 
 
     <script src="main.js"></script>
