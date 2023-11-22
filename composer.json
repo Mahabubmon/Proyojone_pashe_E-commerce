@@ -1,0 +1,15 @@
+{
+    "name": "mahabub/app",
+    "autoload": {
+        "psr-4": {
+            "Mahabub\\App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mahabubur Rahman",
+            "email": "mahabubmon@gmail.com"
+        }
+    ],
+    "require": {}
+}
