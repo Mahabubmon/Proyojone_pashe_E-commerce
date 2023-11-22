@@ -7,13 +7,14 @@
     <title>Login Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="conatainer d-flex justify-content-center align-items-center vh-100">
         <div class=" row">
 
-            <div class="card" style="width: 25rem; height: 15rem; background-color: Aqua;">
+            <div class="card">
                 <h3 class="text text-center">Login</h3>
                 <form>
                     <div class="form-group">
@@ -32,8 +33,7 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div> -->
-                    <button type="submit" class="btn btn-primary" style="margin-top: 10px;"
-                        onclick=login();>Login</button>
+                    <button type="submit" class="btn btn-primary" onclick=login();>Login</button>
                 </form>
             </div>
         </div>

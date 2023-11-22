@@ -1,14 +1,7 @@
-<?php
-require 'vendor/autoload.php';
-
-$animal = new Mahabub\App\Animal();
-echo $animal->roar();
+<?php require 'vendor/autoload.php'; ?>
 
 
-?>
-
-
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,4 +24,4 @@ echo $animal->roar();
         crossorigin="anonymous"></script>
 </body>
 
-</html> -->
+</html>
