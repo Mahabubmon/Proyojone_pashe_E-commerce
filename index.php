@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+require 'src/Animal.php';
+
+$animal = new Animal();
+echo $animal->roar();
+
+
+?>
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,4 +31,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> -->
