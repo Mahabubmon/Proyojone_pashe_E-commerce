@@ -1,7 +1,7 @@
 <?php
-require 'src/Animal.php';
+require 'vendor/autoload.php';
 
-$animal = new Animal();
+$animal = new Mahabub\App\Animal();
 echo $animal->roar();
 
 
