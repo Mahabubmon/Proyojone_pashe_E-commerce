@@ -13,8 +13,8 @@
 <body>
     <div class="container">
         <div class="text">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
+            <input class="input1" type="text" placeholder="Username">
+            <input class="input1" s type="password" placeholder="Password">
             <p>Forgot Password</p>
             <input type="submit" name="" id="" value="Login">
             <p>Not A Mamber?</p>

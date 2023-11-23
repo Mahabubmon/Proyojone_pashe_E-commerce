@@ -5,5 +5,32 @@
 
 body{
     background-image: url("image/back.jpg");
-    background-size: 100%;
+    background-size: 100% 740px;
+}
+
+.container{
+    width: 300px;
+    height: 400px;
+    background-color: rgb(89, 94, 94);
+    margin-left: 40%;
+    margin-top: 10%;
+    text-align: center;
+    color: white;
+    opacity: 0.8;
+}
+
+.container .text{
+    position: relative;
+    top: 7%;
+    
+
+}
+
+.input1{
+    border: none;
+    border-bottom: 3px solid black;
+    width: 250px;
+    font-size: 20px;
+    margin-top: 40px;
+
 }
