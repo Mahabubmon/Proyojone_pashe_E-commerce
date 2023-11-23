@@ -6,10 +6,16 @@ if (isset($_POST["login"])) {
     } else {
         $username = trim($_POST["userName"]);
         $password = strip_tags(trim($_POST["password"]));
-        $query = ;
+        $query = $db->prepare("SELECT * FROM login WHERE email=? AND password=?");
+        $query->execute(array("email" => $username, "password" => $password));
+        $control = $query->fetch(PDO::FETCH_ASSOC);
+        if ($control > 0) {
+            $_SESSION["userName"] = $username;
+            header("Location:index.php");
 
+
+        }
     }
-
 }
 ?>
 <!DOCTYPE html>
