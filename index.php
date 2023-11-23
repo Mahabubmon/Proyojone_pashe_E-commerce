@@ -1,4 +1,10 @@
-<?php require 'vendor/autoload.php'; ?>
+<?php require 'vendor/autoload.php';
+
+if (isset($_SESSION["userName"])) {
+    header("Lcation.php");
+}
+
+?>
 
 
 <!DOCTYPE html>
