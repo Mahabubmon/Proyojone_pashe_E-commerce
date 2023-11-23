@@ -14,7 +14,10 @@
     <div class="container">
         <div class="text">
             <input type="text" placeholder="Username">
-            <input type="password">
+            <input type="password" placeholder="Password">
+            <p>Forgot Password</p>
+            <input type="submit" name="" id="" value="Login">
+            <p>Not A Mamber?</p>
         </div>
     </div>
 
