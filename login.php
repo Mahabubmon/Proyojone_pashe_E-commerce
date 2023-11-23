@@ -2,8 +2,11 @@
 require_once 'config.php';
 if (isset($_POST["login"])) {
     if ($_POST["userName"] == "" or $_POST["password"]) {
-        alert("loggedin");
+        alert("input cannot be empty");
     } else {
+        $username = trim($_POST["userName"]);
+        $password = strip_tags(trim($_POST["password"]));
+        $query = ;
 
     }
 
