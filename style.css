@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Montserrat&family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400&display=swap');
 *{
     margin: 0%;
     padding: 0%;
@@ -6,6 +7,7 @@
 body{
     background-image: url("image/back.jpg");
     background-size: 100% 740px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container{
