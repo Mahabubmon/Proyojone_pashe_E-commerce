@@ -11,33 +11,13 @@
 </head>
 
 <body>
-    <div class="conatainer d-flex justify-content-center align-items-center vh-100">
-        <div class=" row">
-
-            <div class="card">
-                <h3 class="text text-center">Login</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="Email">Email address</label>
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                            placeholder="Enter email" required>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="Password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password" required>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your password with anyone
-                            else.</small>
-                    </div>
-                    <!-- <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div> -->
-                    <button type="submit" class="btn btn-primary" onclick=login();>Login</button>
-                </form>
-            </div>
+    <div class="container">
+        <div class="text">
+            <input type="text" placeholder="Username">
+            <input type="password">
         </div>
     </div>
+
     <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
