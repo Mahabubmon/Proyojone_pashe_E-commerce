@@ -14,10 +14,10 @@
     <div class="container">
         <div class="text">
             <input class="input1" type="text" placeholder="Username">
-            <input class="input1" s type="password" placeholder="Password">
+            <input class="input2" s type="password" placeholder="Password">
             <p>Forgot Password</p>
-            <input type="submit" name="" id="" value="Login">
-            <p>Not A Mamber?</p>
+            <input type="submit" name="" id="submitLogin" value="Login">
+            <p>Not A Mamber? <span>register</span></p>
         </div>
     </div>
 
