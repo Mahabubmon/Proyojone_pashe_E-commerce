@@ -38,6 +38,12 @@ if (mysqli_num_rows($result) === 1) {
         $_SESSION['id'] = $row['id'];
         header("Location: home.php");
         exit();
+    } else {
+        header("Location: index.php?error=Incorrect User Name or Password");
+        exit();
     }
+} else {
+    header("Location: index.php");
+    exit();
 }
 ?>
