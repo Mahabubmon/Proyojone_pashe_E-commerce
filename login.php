@@ -12,17 +12,25 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="text" id="loginform" method="post">
-            <input class="input1" id="userName" type="text" placeholder="Username" name="userName" required>
-            <input class="input2" id="pass" type="password" placeholder="Password" name="password" required>
-            <p>Forgot Password</p>
-            <input type="submit" name="login" id="submitLogin" value="Login" onclick="loginForm()">
-            <p>Not A Mamber? <span>register</span></p>
-        </div>
-    </div>
+    <form action="index.php" method="post">
+        <h2>LOGIN</h2>
+        <?php if (isset($_GET['error'])) { ?>
+            <p class="error">
+                <?php echo $_GET['error']; ?>
+            </p>
+        <?php } ?>
+        <label for="">User Name</label>
+        <input type="text" name="userName" placeholder="User Name">
+        <label for="">Password</label>
+        <input type="password" name="password" placeholder="Password">
 
-    <script src="main.js"></script>
+        <button type="submit">Login</button>
+    </form>
+
+
+
+
+
 
 </body>
 
