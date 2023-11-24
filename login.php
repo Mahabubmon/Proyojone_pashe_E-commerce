@@ -1,23 +1,5 @@
 <?php
-require_once 'config.php';
-if (isset($_POST["login"])) {
-    if ($_POST["userName"] == "" or $_POST["password"]) {
-        alert("input cannot be empty");
-    } else {
-        $username = trim($_POST["userName"]);
-        $password = strip_tags(trim($_POST["password"]));
-        $query = $db->prepare("SELECT * FROM login WHERE email=? AND password=?");
-        $query->execute(array("email" => $username, "password" => $password));
-        $control = $query->fetch(PDO::FETCH_ASSOC);
-        if ($control > 0) {
-            $_SESSION["userName"] = $username;
-            header("Location:index.php");
 
-
-        }
-        alert("incorrect Password");
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
