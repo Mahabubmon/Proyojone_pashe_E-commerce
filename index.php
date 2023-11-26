@@ -10,10 +10,10 @@
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="card">
             <form action="">
-                <input type="text" placeholder="Enter the Email" name="email">
-                <input type="password" placeholder="Enter the Password" name="pass">
+                <input type="text" placeholder="Enter the Email" name="email"><br><br>
+                <input type="password" placeholder="Enter the Password" name="pass"><br><br>
 
                 <button type="submit">Login</button>
             </form>
