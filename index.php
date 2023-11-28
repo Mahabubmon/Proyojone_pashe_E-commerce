@@ -36,11 +36,28 @@
             </div>
         </nav>
 
-        Body Text
-        <div class="well">
-            <h3>
-                <span class="pull-right">Like Us</span>
-            </h3>
+        <div class="panel panel-default">
+            <div class="panel-headeing">
+                <h2>User list <span class="float-right"><strong>Welcome!</strong></span></h2>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <th width="20%">Serial</th>
+                    <th width="20%">Name</th>
+                    <th width="20%">Usernaem</th>
+                    <th width="20%">Email Address</th>
+                    <th width="20%">Action</th>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <span class="float-end">Like Us</span>
+                </h3>
+            </div>
         </div>
     </div>
 
