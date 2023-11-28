@@ -1,7 +1,7 @@
 <?php include 'inc/header.php' ?>
 <div class="panel panel-default">
     <div class="panel-headeing">
-        <h2>User list <span class="float-right"><strong>Welcome!</strong></span></h2>
+        <h2>User Login</h2>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
@@ -45,15 +45,4 @@
 </div>
 
 
-<div class="card">
-    <div class="card-body">
-        <h3 class="card-title">
-            <span class="float-end">Like Us</span>
-        </h3>
-    </div>
-</div>
-</div>
-
-</body>
-
-</html>
+<?php include 'inc/footer.php' ?>s
