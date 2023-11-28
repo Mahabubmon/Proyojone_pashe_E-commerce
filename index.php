@@ -47,6 +47,16 @@
                     <th width="20%">Usernaem</th>
                     <th width="20%">Email Address</th>
                     <th width="20%">Action</th>
+
+                    <tr>
+                        <td>01</td>
+                        <td>Mahabub</td>
+                        <td>Rahman</td>
+                        <td>mahabub@test.com</td>
+                        <td>
+                            <a href="profile.php?id=1">View</a>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
