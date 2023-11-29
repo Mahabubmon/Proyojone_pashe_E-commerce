@@ -1,4 +1,15 @@
-<?php include 'inc/header.php' ?>
+<?php include 'inc/header.php';
+include 'lib/User.php';
+?>
+
+<?php
+$user = new User();
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
+    $userRegi = $user->userRegistration($_POST['']);
+}
+
+
+?>
 <div class="panel panel-default">
     <div class="panel-headeing">
         <h2>User Registration</h2>

@@ -9,6 +9,10 @@ class User
         $this->db = new Database();
 
     }
+    public function userRegistration($data)
+    {
+
+    }
 
 }
 
