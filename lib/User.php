@@ -17,9 +17,11 @@ class User
         $password = md5($data['password']);
 
         if($name == ''|| $username == '' || $email == ''|| $password == ''){
-            $msg = "<div class = "alert alert-danger"><strong>Error !</strong> Field must note be empty</div>";
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> Field must note be empty</div>";
             return $msg;
         }
+        if(strlen($username) < 3){
+            $msg = 
 
     }
 
