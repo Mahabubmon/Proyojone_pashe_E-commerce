@@ -1,4 +1,7 @@
-<?php include 'inc/header.php' ?>
+<?php include 'inc/header.php';
+include 'lib/User.php';
+$user = new User();
+?>
 <div class="panel panel-default">
     <div class="panel-headeing">
         <h2>User List <span class="float-right"><strong>Welcome!</strong></span></h2>
