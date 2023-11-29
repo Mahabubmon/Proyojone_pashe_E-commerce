@@ -1,7 +1,7 @@
 <?php include 'inc/header.php' ?>
 <div class="panel panel-default">
     <div class="panel-headeing">
-        <h2>User Login</h2>
+        <h2>User List <span class="float-right"><strong>Welcome!</strong></span></h2>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
