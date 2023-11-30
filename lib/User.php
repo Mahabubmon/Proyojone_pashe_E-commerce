@@ -33,11 +33,23 @@ class User
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address is Not Valid</div>";
             return $msg;
         }
+        if ($chk_email == true) {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
+            return $msg;
+        }
+        $sql = "INSERT  ";
     }
     public function emailheck($email)
     {
         $sql = "SELECT email FROM tbl_user WHERE email = :email";
         $query = $this->db->pdo->prepare($sql);
+        $query->bindParam(':email', $email);
+        $query->execute();
+        if ($query->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
