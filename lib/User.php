@@ -14,6 +14,7 @@ class User
         $name = $data['name'];
         $username = $data['username'];
         $email = $data['email'];
+        
         $password = md5($data['password']);
 
         if($name == ''|| $username == '' || $email == ''|| $password == ''){
@@ -21,8 +22,11 @@ class User
             return $msg;
         }
         if(strlen($username) < 3){
-            $msg = 
-
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> User Name is too short</div>";
+            return $msg;
+    }elseif('[^a-z0-9_-]/i'){
+         $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> User Name must only content 
+         alphanumerical,dashes and underscoress</div>";
     }
 
 }
