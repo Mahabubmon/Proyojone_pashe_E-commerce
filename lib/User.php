@@ -38,6 +38,16 @@ class User
             return $msg;
         }
         $sql = "INSERT INTO tbl_user (name,username,email,password) VALUES (:name,:username,:email,:password) ";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue(':name', $name);
+        $query->bindValue(':username', $username);
+        $query->bindValue(':email', $email);
+        $query->bindValue(':password', $password);
+        $result = $query->execute();
+        if ($result === false) {
+            $msg = "<div class = 'alert alert-success'><strong>Error !</strong> Thank you Have been registered </div>";
+            return $msg;
+        }
     }
     public function emailCheck($email)
     {
