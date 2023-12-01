@@ -1,4 +1,5 @@
 <?php
+
 class Database
 {
     private $hostdb = "localhost";
@@ -7,12 +8,11 @@ class Database
     private $namedb = "db_ir";
     public $pdo;
 
-
     public function __construct()
     {
         if (!isset($this->pdo)) {
             try {
-                $link = new PDO("mysql:host=" . $this->hostdb . ",dbname=" . $this->namedb, $this->userdb, $this->password);
+                $link = new PDO("mysql:host=" . $this->hostdb . ";dbname=" . $this->namedb, $this->userdb, $this->password);
 
                 $link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $link->exec("SET CHARACTER SET utf8");
@@ -20,12 +20,9 @@ class Database
 
             } catch (PDOException $e) {
                 die("Failed to connect with Database" . $e->getMessage());
-
             }
         }
     }
-
 }
-
 
 ?>
