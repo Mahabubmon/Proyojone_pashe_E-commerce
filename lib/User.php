@@ -24,7 +24,7 @@ class User
         if (strlen($username) < 3) {
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> User Name is too short</div>";
             return $msg;
-        } elseif ('[^a-z0-9_-]/i') {
+        } elseif (preg_match('/[^a-z0-9_-]+/i', $username)) {
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> User Name must only content 
          alphanumerical,dashes and underscoress</div>";
         }
@@ -37,13 +37,13 @@ class User
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
             return $msg;
         }
-        $sql = "INSERT  ";
+        $sql = "INSERT ";
     }
-    public function emailheck($email)
+    public function emailCheck($email)
     {
         $sql = "SELECT email FROM tbl_user WHERE email = :email";
         $query = $this->db->pdo->prepare($sql);
-        $query->bindParam(':email', $email);
+        $query->bindValue(':email', $email);
         $query->execute();
         if ($query->rowCount() > 0) {
             return true;

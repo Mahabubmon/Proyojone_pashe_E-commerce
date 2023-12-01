@@ -5,7 +5,7 @@ include 'lib/User.php';
 <?php
 $user = new User();
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
-    $userRegi = $user->userRegistration($_POST['']);
+    $userRegi = $user->userRegistration($_POST);
 }
 
 
@@ -17,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     <div class="panel-body">
         <form action="" method="post">
             <div style="max-width:600px; margin:0 auto;">
+                <?php
+                if (isset($userRegi)) {
+                    echo $userRegi;
+                }
+                ?>
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" class="form-control">
