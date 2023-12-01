@@ -37,7 +37,7 @@ class User
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
             return $msg;
         }
-        $sql = "INSERT ";
+        $sql = "INSERT INTO tbl_user (name,username,email,password) VALUES (:name,:username,:email,:password) ";
     }
     public function emailCheck($email)
     {
