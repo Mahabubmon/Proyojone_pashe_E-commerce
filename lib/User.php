@@ -44,8 +44,11 @@ class User
         $query->bindValue(':email', $email);
         $query->bindValue(':password', $password);
         $result = $query->execute();
-        if ($result === false) {
-            $msg = "<div class = 'alert alert-success'><strong>Error !</strong> Thank you Have been registered </div>";
+        if ($result === true) {
+            $msg = "<div class = 'alert alert-success'><strong>Success !</strong> Thank you Have been registered </div>";
+            return $msg;
+        } else {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
             return $msg;
         }
     }
