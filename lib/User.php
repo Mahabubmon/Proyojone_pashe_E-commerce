@@ -65,6 +65,17 @@ class User
         }
     }
 
+    public function getLoginUser($email, $password)
+    {
+        $sql = "SELECT * FROM tbl_user WHERE email = :email AND password = :password LIMIT 1";
+        $query = $this->db->pdo->prepare($sql);
+        $query->bindValue(':email', $email);
+        $query->bindValue(':password', $password);
+        $query->execute();
+
+
+    }
+
 
     public function userLogin($data)
     {
@@ -84,6 +95,7 @@ class User
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
             return $msg;
         }
+        $result = $this->getLoginUser($email, $password);
 
     }
 
