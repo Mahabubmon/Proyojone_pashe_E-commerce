@@ -64,6 +64,29 @@ class User
             return false;
         }
     }
+
+
+    public function userLogin($data)
+    {
+        $email = $data['email'];
+        $password = md5($data['password']);
+        $chk_email = $this->emailCheck($email);
+
+        if ($email == '' || $password == '') {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> Field must note be empty</div>";
+            return $msg;
+        }
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address is Not Valid</div>";
+            return $msg;
+        }
+        if ($chk_email == true) {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
+            return $msg;
+        }
+
+    }
+
 }
 
 
