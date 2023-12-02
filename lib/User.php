@@ -98,6 +98,20 @@ class User
             return $msg;
         }
         $result = $this->getLoginUser($email, $password);
+        if ($result) {
+            Session::init();
+            Session::set("login", true);
+            Session::set("id", $result->id);
+            Session::set("name", $result->name);
+            Session::set("id", $result->username);
+            Session::set("loginmsg", "
+            <div class = 'alert alert-success'><strong>success !</strong> You are logged in</div>");
+            header("Location:index.php");
+        } else {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> Data not found </div>";
+            return $msg;
+
+        }
 
     }
 
