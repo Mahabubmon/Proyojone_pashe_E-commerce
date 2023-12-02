@@ -72,6 +72,8 @@ class User
         $query->bindValue(':email', $email);
         $query->bindValue(':password', $password);
         $query->execute();
+        $result = $query->fetch(PDO::FETCH_OBJ);
+        return $result;
 
 
     }
