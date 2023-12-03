@@ -9,21 +9,22 @@ $logginmsg = Session::get("loginmsg");
 if (isset($logginmsg)) {
     echo $logginmsg;
 }
+Session::set("loginmsg", NULL);
 ?>
 
 <div class="panel panel-default">
     <div class="panel-headeing">
-        <h>User List <span class="float-right"><strong>Welcome!</strong>
+        <h3>User List <span class="float-right"><strong>Welcome!</strong>
 
                 <?php
                 // $name = Session::get("name");
                 // if (isset($name)) {
                 // echo $name;
                 
-                // }
+                // }error
                 
                 ?>
-            </span></h>
+            </span></h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
