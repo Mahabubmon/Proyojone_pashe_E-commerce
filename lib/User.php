@@ -33,7 +33,7 @@ class User
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address is Not Valid</div>";
             return $msg;
         }
-        if ($chk_email == true) {
+        if ($chk_email == false) {
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
             return $msg;
         }
@@ -93,8 +93,8 @@ class User
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address is Not Valid</div>";
             return $msg;
         }
-        if ($chk_email == true) {
-            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address already Exist </div>";
+        if ($chk_email == false) {
+            $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> The Email Address Not Exist </div>";
             return $msg;
         }
         $result = $this->getLoginUser($email, $password);

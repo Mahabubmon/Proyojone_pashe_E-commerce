@@ -13,17 +13,17 @@ if (isset($logginmsg)) {
 
 <div class="panel panel-default">
     <div class="panel-headeing">
-        <h2>User List <span class="float-right"><strong>Welcome!</strong>
+        <h>User List <span class="float-right"><strong>Welcome!</strong>
 
                 <?php
-                $name = Session::get("name");
-                if (isset($name)) {
-                    echo $name;
-
-                }
-
+                // $name = Session::get("name");
+                // if (isset($name)) {
+                // echo $name;
+                
+                // }
+                
                 ?>
-            </span></h2>
+            </span></h>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
