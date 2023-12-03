@@ -106,7 +106,7 @@ class User
             Session::set("id", $result->username);
             Session::set("loginmsg", "
             <div class = 'alert alert-success'><strong>success !</strong> You are logged in</div>");
-            header("Location:index.php");
+            header("Location: index.php");
         } else {
             $msg = "<div class = 'alert alert-danger'><strong>Error !</strong> Data not found </div>";
             return $msg;
