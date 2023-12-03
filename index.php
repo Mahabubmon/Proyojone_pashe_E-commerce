@@ -2,9 +2,28 @@
 include 'lib/User.php';
 $user = new User();
 ?>
+
+
+<?php
+$logginmsg = Session::get("loginmsg");
+if (isset($logginmsg)) {
+    echo $logginmsg;
+}
+?>
+
 <div class="panel panel-default">
     <div class="panel-headeing">
-        <h2>User List <span class="float-right"><strong>Welcome!</strong></span></h2>
+        <h2>User List <span class="float-right"><strong>Welcome!</strong>
+
+                <?php
+                $name = Session::get("name");
+                if (isset($name)) {
+                    echo $name;
+
+                }
+
+                ?>
+            </span></h2>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
