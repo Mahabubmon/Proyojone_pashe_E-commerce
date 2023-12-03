@@ -13,16 +13,16 @@ Session::set("loginmsg", NULL);
 ?>
 
 <div class="panel panel-default">
-    <div class="panel-headeing">
+    <div class="panel-heading">
         <h3>User List <span class="float-right"><strong>Welcome!</strong>
 
                 <?php
-                // $name = Session::get("name");
-                // if (isset($name)) {
-                // echo $name;
-                
-                // }error
-                
+                $name = Session::get("name");
+                if (isset($name)) {
+                    echo $name;
+
+                }
+
                 ?>
             </span></h3>
     </div>
