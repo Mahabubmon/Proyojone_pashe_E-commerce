@@ -1,4 +1,6 @@
-<?php include 'inc/header.php' ?>
+<?php include 'inc/header.php';
+Session::checkLogin();
+?>
 <div class="panel panel-default">
     <div class="panel-headeing">
         <h2>User Profile<span class="float-right">

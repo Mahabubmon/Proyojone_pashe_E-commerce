@@ -27,6 +27,24 @@ class Session
 
         }
     }
+
+    public static function checkSession()
+    {
+        if (self::get("login") == false) {
+            self::destroy();
+            header("Location: login.php");
+        }
+    }
+    public static function checkLogin()
+    {
+        if (self::get("login") == true) {
+            header("Location: login.php");
+        }
+    }
+
+
+
+
     public static function destroy()
     {
 
