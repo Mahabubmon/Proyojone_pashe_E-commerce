@@ -18,6 +18,7 @@ Session::init();
 </head>
 <?php
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    Session::destroy();
 }
 
 
