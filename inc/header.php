@@ -36,18 +36,27 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?action=logout">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Register</a>
-                    </li>
+
+                    <?php
+                    $id = Session::get('id');
+                    $userlogin = Session::get('login');
+                    if ($userlogin == true) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="?action=logout">Logout</a>
+                        </li>
+                    <?php } else { ?>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">Register</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>

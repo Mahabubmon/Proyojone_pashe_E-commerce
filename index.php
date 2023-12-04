@@ -18,7 +18,7 @@ Session::set("loginmsg", NULL);
             <h3>User List <span class="float-right"><strong>Welcome!</strong>
 
                     <?php
-                    $name = Session::get("name");
+                    $name = Session::get("username");
                     if (isset($name)) {
                         echo $name;
 
