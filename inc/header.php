@@ -16,6 +16,14 @@ Session::init();
     <script src="inc/jquery.min.js"></script>
     <script src="inc/bootstrap.bundle.min.js"></script>
 </head>
+<?php
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+}
+
+
+?>
+
+
 
 <body>
     <div class="container">
@@ -31,7 +39,7 @@ Session::init();
                         <a class="nav-link" href="profile.php">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="?action=logout">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Login</a>
