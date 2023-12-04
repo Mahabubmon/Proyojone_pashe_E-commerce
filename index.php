@@ -14,17 +14,19 @@ Session::set("loginmsg", NULL);
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3>User List <span class="float-right"><strong>Welcome!</strong>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>User List <span class="float-right"><strong>Welcome!</strong>
 
-                <?php
-                $name = Session::get("name");
-                if (isset($name)) {
-                    echo $name;
+                    <?php
+                    $name = Session::get("name");
+                    if (isset($name)) {
+                        echo $name;
 
-                }
+                    }
 
-                ?>
-            </span></h3>
+                    ?>
+                </span></h3>
+        </div>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
