@@ -9,7 +9,7 @@
                 <h1>Create Category</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="categories.html" class="btn btn-primary">Back</a>
+                <a href="{{route('categories.index')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="pb-5 pt-3">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="#" class="btn btn-outline-dark ml-3">Cancel</a>
+                <a href="{{route('categories.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
 
         </form>
@@ -76,14 +76,21 @@
 
         var element = $(this);
 
+        $("button['type=submit']").prop('disabled', true);
+
         $.ajax({
             url: '{{route('categories.store')}}',
             type: 'POST',
             data: element.serializeArray(),
             dataType: 'json',
             success: function (response) {
+                $("button['type=submit']").prop('disabled', false);
+
 
                 if (response['status'] == true) {
+
+                    window.location.href = "{{route('categories.index')}}";
+
                     $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
 
@@ -119,12 +126,16 @@
 
     $("#name").change(function () {
         element = $(this);
+        $("button['type=submit']").prop('disabled', true);
+
         $.ajax({
             url: '{{route('getSlug')}}',
             type: 'GET',
             data: { title: element.val() },
             dataType: 'json',
             success: function (response) {
+                $("button['type=submit']").prop('disabled', true);
+
                 if (response["status"] == true) {
                     $("#slug").val(response["slug"]);
                 }
