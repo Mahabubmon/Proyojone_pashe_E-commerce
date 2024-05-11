@@ -77,7 +77,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="#">
+                                <a href="{{route('categories.edit',$category->id)}}">
                                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path
@@ -85,7 +85,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="#" class="text-danger w-4 h-4 mr-1">
+                                <a href="#" onclick="deleteCategory({{$category->id}})" class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -122,5 +122,33 @@
 @section('customsJs')
 
 
+<script>
+    function deleteCategory(id){
 
+
+    var url ='{{route('categories.delete','ID')}}';
+    var newUrl = url.replace("ID",id);
+
+
+        if(confirm("Are you sure Want to delete")){
+            $.ajax({
+            url: newUrl,
+            type: 'DELETE',
+            data: {},
+            dataType: 'json',
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+            success: function (response) {
+                if (response['status']) {
+                    window.location.href = "{{route('categories.index')}}";
+                }
+           }
+    
+    });
+        }
+   
+
+    }
+</script>
 @endsection
