@@ -9,7 +9,7 @@
                 <h1>Create Brand</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="brands.html" class="btn btn-primary">Back</a>
+                <a href="{{route('brands.index')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -38,13 +38,24 @@
                                 <p></p>
 
                             </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="email">Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="1">Active</option>
+                                    <option value="2">Block</option>
+                                </select>
+                                <p></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="pb-5 pt-3">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="brands.html" class="btn btn-outline-dark ml-3">Cancel</a>
+                <a href="{{route('brands.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </form>
     </div>
@@ -73,7 +84,7 @@
                 $("button[type='submit']").prop('disabled', false);
 
                 if (response['status'] == true) {
-                    window.location.href = "{{route('categories.index')}}";
+                    window.location.href = "{{route('brands.index')}}";
 
                     $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
