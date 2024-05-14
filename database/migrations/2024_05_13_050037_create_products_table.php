@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->enum('is_featured', ['Yes', 'No'])->default('No');
             $table->string('sku');
             $table->string('barcode')->nullable();
-            $table->enum('tracky_qty', ['Yes', 'No'])->default('Yes');
+            $table->enum('track_qty', ['Yes', 'No'])->default('Yes');
             $table->integer('qty')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();

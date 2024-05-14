@@ -30,6 +30,7 @@
                                         <label for="title">Title</label>
                                         <input type="text" name="title" id="title" class="form-control"
                                             placeholder="Title">
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -37,6 +38,7 @@
                                         <label for="slug">Slug</label>
                                         <input type="text" readonly name="slug" id="slug" class="form-control"
                                             placeholder="slug">
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -52,12 +54,15 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h2 class="h4 mb-3">Media</h2>
-                            <div id="image" class="dropzone dz-clickable">
+                            <div id="image" name="image" class="dropzone dz-clickable">
                                 <div class="dz-message needsclick">
                                     <br>Drop files here or click to upload.<br><br>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row" id="product-gallery">
+
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
@@ -68,6 +73,7 @@
                                         <label for="price">Price</label>
                                         <input type="text" name="price" id="price" class="form-control"
                                             placeholder="Price">
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -92,6 +98,7 @@
                                     <div class="mb-3">
                                         <label for="sku">SKU (Stock Keeping Unit)</label>
                                         <input type="text" name="sku" id="sku" class="form-control" placeholder="sku">
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -104,14 +111,18 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <div class="custom-control custom-checkbox">
+                                            <input type="hidden" name="track_qty" value="No">
                                             <input class="custom-control-input" type="checkbox" id="track_qty"
-                                                name="track_qty" checked>
+                                                name="track_qty" value="Yes" checked>
+                                            <p class="error"></p>
                                             <label for="track_qty" class="custom-control-label">Track Quantity</label>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <input type="number" min="0" name="qty" id="qty" class="form-control"
                                             placeholder="Qty">
+                                        <p class="error"></p>
+
                                     </div>
                                 </div>
                             </div>
@@ -139,17 +150,18 @@
 
                                     @if ($categories->isNotEmpty())
                                         @foreach ($categories as $category)
+                                            <option value="" readonly>Select a Category</option>
                                             <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                     @endif
                                 </select>
+                                <p class="error"></p>
+
                             </div>
                             <div class="mb-3">
                                 <label for="category">Sub category</label>
                                 <select name="sub_category" id="sub_category" class="form-control">
-                                    <option value="">Mobile</option>
-                                    <option value="">Home Theater</option>
-                                    <option value="">Headphones</option>
+                                    <option value="">Select A Sub Category</option>
                                 </select>
                             </div>
                         </div>
@@ -158,7 +170,7 @@
                         <div class="card-body">
                             <h2 class="h4 mb-3">Product brand</h2>
                             <div class="mb-3">
-                                <select name="status" id="status" class="form-control">
+                                <select name="brand" id="brand" class="form-control">
                                     @if ($brands->isNotEmpty())
                                         @foreach ($brands as $brand)
                                             <option value="{{$brand->id}}">{{$brand->name}}</option>
@@ -172,10 +184,12 @@
                         <div class="card-body">
                             <h2 class="h4 mb-3">Featured product</h2>
                             <div class="mb-3">
-                                <select name="status" id="status" class="form-control">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
+                                <select name="is_featured" id="is_featured" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
                                 </select>
+                                <p class="error"></p>
+
                             </div>
                         </div>
                     </div>
@@ -183,7 +197,7 @@
             </div>
 
             <div class="pb-5 pt-3">
-                <button class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Create</button>
                 <a href="products.html" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </div>
@@ -221,37 +235,28 @@
     $("#productForm").submit(function (event) {
         event.preventDefault();
 
-        var element = $(this);
-
-        // $("button[type='submit']").prop('disabled', true);
+        var formArray = $(this).serializeArray();
+        $("button[type='submit']").prop('disabled', true);
 
         $.ajax({
             url: '{{route('products.store')}}',
             type: 'POST',
-            data: element.serializeArray(),
+            data: formArray,
             dataType: 'json',
             success: function (response) {
-                // $("button[type='submit']").prop('disabled', false);
+                $("button[type='submit']").prop('disabled', false);
 
-                // if (response['status'] == true) {
-                //     window.location.href = "{{route('brands.index')}}";
+                if (response['status'] == true) {
 
-                //     $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
-                //     $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
-                // } else {
-                //     var errors = response['errors'];
+                } else {
+                    var errors = response['errors'];
+                    $(".error").removeClass('invalid-feedback').html('');
+                    $("input[type='text'],select").removeClass('is-invalid');
 
-                //     if (errors['name']) {
-                //         $("#name").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['name']);
-                //     } else {
-                //         $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
-                //     }
-                //     if (errors['slug']) {
-                //         $("#slug").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['slug']);
-                //     } else {
-                //         $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
-                //     }
-                // }
+                    $.each(errors, function (key, value) {
+                        $(`#${key}`).addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(value);
+                    });
+                }
             },
             error: function (jqXHR, exception) {
                 console.log('Something went Wrong');
@@ -259,5 +264,92 @@
         });
     });
 
+
+    $("#category").change(function () {
+        var category_id = $(this).val();
+        $.ajax({
+            url: '{{route('product-subcategories.index')}}',
+            type: 'GET',
+            data: { category_id: category_id },
+            dataType: 'json',
+            success: function (response) {
+                $("#sub_category").find("option").not(":first").remove();
+                $.each(response["subCategory"], function (key, item) {
+                    $("#sub_category").append(`<option value='${item.id}'>${item.name}</option>`);
+                });
+
+
+            },
+            error: function (jqXHR, exception) {
+                console.log('Something went Wrong');
+            }
+        });
+    });
+
+
+
+    Dropzone.autoDiscover = false;
+    const dropzone = $("#image").dropzone({
+
+        url: "{{ route('temp-images.create') }}",
+        maxFiles: 10,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }, success: function (file, response) {
+            // $("#image_id").val(response.image_id);
+            //console.log(response)
+
+
+            var html = `<div class='col-md-3'>
+                            <div class='card'>
+                                <intput type='hidden' name='image_array[]' value='${response.image_id}' />
+                                    <img src='${response.ImagePath}' class='card-img-top' alt="">
+                                    <div class='card-body'>
+                                        <a href='#' class='btn btn-danger'>Delete</a>
+                                    </div>
+                            </div>
+                        </div>`;
+
+            $("#product-gallery").append(html);
+        }
+    });
+
+
+
+    // Dropzone.autoDiscover = false;
+    // const dropzone = $("#image").dropzone({
+
+    //     url: "{{ route('temp-images.create') }}",
+    //     maxFiles: 10,
+    //     paramName: 'image',
+    //     addRemoveLinks: true,
+    //     acceptedFiles: "image/jpeg,image/png,image/gif",
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     },
+    //     success: function (file, response) {
+    //         var html = ` <div class="col-md-3"><div class="card" style="width: 18rem;">
+    //         <img src="${response.ImagePath}" class="card-img-top" alt="">
+    //             <div class="card-body">
+    //                 <a href="#" class="btn btn-danger delete-image" data-image-id="${response.image_id}">Delete</a>
+    //             </div>
+    //     </div>
+    //     </div>`;
+
+    //         $("#product-gallery").append(html);
+    //     }
+    // });
+
+    // // Add event listener for delete buttons
+    // $(document).on('click', '.delete-image', function (e) {
+    //     e.preventDefault();
+    //     // Remove the parent card element
+    //     $(this).closest('.card').remove();
+    // });
+
+</script>
 </script>
 @endsection
