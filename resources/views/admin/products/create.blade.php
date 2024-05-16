@@ -9,7 +9,7 @@
                 <h1>Create Product</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="products.html" class="btn btn-primary">Back</a>
+                <a href="{{route('products.index')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -198,7 +198,7 @@
 
             <div class="pb-5 pt-3">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="products.html" class="btn btn-outline-dark ml-3">Cancel</a>
+                <a href="{{route('products.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
         </div>
     </form>
@@ -248,6 +248,10 @@
 
                 if (response['status'] == true) {
 
+                    window.location.href = "{{route('products.index')}}";
+                    $(".error").removeClass('invalid-feedback').html('');
+                    $("input[type='text'],select").removeClass('is-invalid');
+
                 } else {
                     var errors = response['errors'];
                     $(".error").removeClass('invalid-feedback').html('');
@@ -288,7 +292,7 @@
 
 
 
-    Dropzone.autoDiscover = false;
+    // Dropzone.autoDiscover = false;
     const dropzone = $("#image").dropzone({
 
         url: "{{ route('temp-images.create') }}",
@@ -300,55 +304,29 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }, success: function (file, response) {
             // $("#image_id").val(response.image_id);
-            //console.log(response)
-
-
-            var html = `<div class='col-md-3'>
+            // console.log(response)
+            var html = `<div class='col-md-3' id='image-row-${response.image_id}'>
                             <div class='card'>
-                                <intput type='hidden' name='image_array[]' value='${response.image_id}' />
+                                <input type='hidden' name='image_array[]' value='${response.image_id}' />
                                     <img src='${response.ImagePath}' class='card-img-top' alt="">
                                     <div class='card-body'>
-                                        <a href='#' class='btn btn-danger'>Delete</a>
+                                        <a href='javascript:void(0)' onclick='deleteImage(${response.image_id})' class='btn btn-danger'>Delete</a>
                                     </div>
                             </div>
                         </div>`;
 
             $("#product-gallery").append(html);
+        },
+        complete: function (file) {
+            this.removeFile(file);
         }
     });
 
+    function deleteImage(id) {
+        $("#image-row-" + id).remove();
+    }
 
 
-    // Dropzone.autoDiscover = false;
-    // const dropzone = $("#image").dropzone({
-
-    //     url: "{{ route('temp-images.create') }}",
-    //     maxFiles: 10,
-    //     paramName: 'image',
-    //     addRemoveLinks: true,
-    //     acceptedFiles: "image/jpeg,image/png,image/gif",
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     },
-    //     success: function (file, response) {
-    //         var html = ` <div class="col-md-3"><div class="card" style="width: 18rem;">
-    //         <img src="${response.ImagePath}" class="card-img-top" alt="">
-    //             <div class="card-body">
-    //                 <a href="#" class="btn btn-danger delete-image" data-image-id="${response.image_id}">Delete</a>
-    //             </div>
-    //     </div>
-    //     </div>`;
-
-    //         $("#product-gallery").append(html);
-    //     }
-    // });
-
-    // // Add event listener for delete buttons
-    // $(document).on('click', '.delete-image', function (e) {
-    //     e.preventDefault();
-    //     // Remove the parent card element
-    //     $(this).closest('.card').remove();
-    // });
 
 </script>
 </script>
