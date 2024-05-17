@@ -41,5 +41,34 @@ class TempImagesController extends Controller
             ]);
         }
 
+
+
+
+
+
+
+
+
+        // if ($request->image) {
+
+        //     $image = $request->image;
+        //     $extenstion = $image->getClientOriginalExtension();
+        //     $newFileName = time() . "." . $extenstion;
+
+
+        //     $temImage = new TempImage();
+        //     $temImage->name = $newFileName;
+        //     $temImage->save();
+
+        //     $image->move(public_path() . '/temp', $newFileName);
+
+
+        //     return response()->json([
+        //         'status' => true,
+        //         'name' => $newFileName,
+        //         'id' => $temImage->id
+        //     ]);
+        // }
     }
+
 }

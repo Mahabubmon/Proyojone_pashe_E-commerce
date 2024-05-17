@@ -63,7 +63,23 @@
                         </div>
                     </div>
                     <div class="row" id="product-gallery">
+                        @if ($productImages->isNotEmpty())
+                            @foreach ($productImages as $image)
 
+                                <div class='col-md-3' id='image-row-{{$image->id}}'>
+                                    <div class='card'>
+                                        <input type='hidden' name='image_array[]' value='{{$image->id}}' />
+                                        <img src='{{asset('uploads/product/small/' . $image->image)}}' class='card-img-top'
+                                            alt="">
+                                        <div class='card-body'>
+                                            <a href='javascript:void(0)' onclick='deleteImage({{$image->id}})'
+                                                class='btn btn-danger'>Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        @endif
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
@@ -307,9 +323,10 @@
     // Dropzone.autoDiscover = false;
     const dropzone = $("#image").dropzone({
 
-        url: "{{ route('temp-images.create') }}",
+        url: "{{ route('product-images.update') }}",
         maxFiles: 10,
         paramName: 'image',
+        params: { 'product_id':{{$product->id}}},
         addRemoveLinks: true,
         acceptedFiles: "image/jpeg,image/png,image/gif",
         headers: {
@@ -336,6 +353,23 @@
 
     function deleteImage(id) {
         $("#image-row-" + id).remove();
+
+        if (confirm("Are you Sure want to delete Image")) {
+            $.ajax({
+                url: '{{route('product-images.destroy')}}',
+                type: 'DELETE',
+                data: { id: id },
+                success: function (response) {
+
+                    if (response.status == true) {
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+
+                    }
+                }
+            });
+        }
     }
 
 

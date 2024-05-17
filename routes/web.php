@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductImageController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandController;
@@ -95,11 +96,13 @@ Route::group(['prefix' => 'admin'], function () {
 
 
 
-
         //productSubcategory
         Route::get('/product-subcategories', [ProductSubCategoryController::class, 'index'])->name('product-subcategories.index');
 
 
+
+        Route::post('/product-images/update', [ProductImageController::class, 'update'])->name('product-images.update');
+        Route::delete('/product-images', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
 
 
 

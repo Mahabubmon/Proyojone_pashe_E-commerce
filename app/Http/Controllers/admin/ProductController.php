@@ -135,11 +135,19 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        if (empty($product)) {
+            return redirect()->route('products.index')->with('error', 'Product Not found');
+        }
+
+        //Fetch Product Image
+
+        $productImages = ProductImage::where('product_id', $product->id)->get();
+
         $subCategories = SubCategory::where('category_id', $product->category_id)->get();
 
         $categories = Category::orderBy("name", "asc")->get();
         $brands = Brand::orderBy("name", "asc")->get();
-        return view("admin.products.edit", compact("categories", "brands", "product", "subCategories"));
+        return view("admin.products.edit", compact("categories", "brands", "product", "subCategories", "productImages"));
     }
 
     public function update(Request $request, $id)
