@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\SubCategoryController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\TempImagesController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -30,6 +31,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::get('/', [FrontController::class, 'index'])->name('front.home');
+Route::get('/shop', [ShopController::class, 'index'])->name('front.shop');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => 'admin.guest'], function () {
@@ -106,16 +108,6 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('/product-images/update', [ProductImageController::class, 'update'])->name('product-images.update');
         Route::delete('/product-images', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
-
-
-
-
-
-
-
-
-
-
 
     });
 });
