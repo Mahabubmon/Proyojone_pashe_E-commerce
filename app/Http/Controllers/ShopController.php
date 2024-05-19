@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request, $categorySlug = null, $subCategorySlug = null)
     {
         $categories = Category::orderBy('name', 'ASC')
             ->with('sub_category')
@@ -21,9 +22,30 @@ class ShopController extends Controller
             ->where('status', 1)
             ->get();
 
-        $products = Product::orderBy('id', 'DESC')
-            ->where('status', 1)
-            ->get();
+
+
+        $products = Product::where('status', 1);
+
+        //Apply Filters here
+        if (!empty($categorySlug)) {
+            $category = Category::where('slug', $categorySlug)->first();
+            $products = $products->where('category_id', $category->id);
+        }
+
+        //Apply Filters here
+        if (!empty($subCategorySlug)) {
+            $subCategory = SubCategory::where('slug', $subCategorySlug)->first();
+            $products = $products->where('sub_category_id', $subCategory->id);
+        }
+
+
+
+        $products = $products->orderBy('id', 'DESC');
+        $products = $products->get();
+
+        // $products = Product::orderBy('id', 'DESC')
+        //     ->where('status', 1)
+        //     ->get();
 
         $data['categories'] = $categories;
         $data['brands'] = $brands;
