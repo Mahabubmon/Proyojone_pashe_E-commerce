@@ -93,7 +93,7 @@ class ProductController extends Controller
                     //Generate Product Thumbnail
 
                     //Large Image
-                    $sourcePath = public_path() . '/temp/' . $temImageInfo->name;
+                    $sourcePath = public_path() . '/temp/' . $temImageInfo->name.$product->id;
                     $destPath = public_path() . '/uploads/product/large/' . $imageName;
                     $image = Image::make($sourcePath);
                     $image->resize(1400, null, function ($constraint) {
