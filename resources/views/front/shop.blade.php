@@ -72,7 +72,7 @@
                                 <div class="form-check mb-2">
                                     <input {{(in_array($brand->id, $brandsArray)) ? 'checked': '' }} class="form-check-input brand-label" type="checkbox" name="brand[]" value="{{$brand->id}}"
                                         id="brand-{{$brand->id}}">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <label class="form-check-label" for="{{$brand->id}}">
                                         {{$brand->name}}
                                     </label>
                                 </div>
