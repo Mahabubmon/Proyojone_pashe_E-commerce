@@ -183,10 +183,10 @@
 rangeSlider = $(".js-range-slider").ionRangeSlider({
             type: "double",
             min:0,
-            max:100000,
+            max:1000,
             from:0,
             step:10,
-            to:5000,
+            to:500,
             skin:"round",
             max_postfix:"+",
             prefix:"$",
@@ -197,8 +197,6 @@ rangeSlider = $(".js-range-slider").ionRangeSlider({
             //Savings it's instance to var
         });
         var slider = $(".js-range-slider").data("ionRangeSlider");
-
-
 
 
     $(".brand-label").change(function(){
@@ -218,7 +216,7 @@ rangeSlider = $(".js-range-slider").ionRangeSlider({
 
         var url = '{{url()->current() }}?';
 
-        url = '&price_min='+slider.result.from+'&price_max='+slider.result.to;
+        url += '&price_min='+slider.result.from+'&price_max='+slider.result.to;
 
         window.location.href = url+'&brand='+brands.toString();
     }
