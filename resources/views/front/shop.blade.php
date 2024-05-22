@@ -97,14 +97,11 @@
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-end mb-4">
                             <div class="ml-2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle"
-                                        data-bs-toggle="dropdown">Sorting</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Price High</a>
-                                        <a class="dropdown-item" href="#">Price Low</a>
-                                    </div>
+                                <select name="sort" id="sort" class="form-control">
+                                    <option value="latest" {{ ( $sort == 'latest') ? 'selected': ''}}>Latest</option>
+                                    <option value="price_desc"  {{ ( $sort == 'price_desc') ? 'selected': ''}}>Price High</option>
+                                    <option value="price_asc" {{ ( $sort == 'price_asc') ? 'selected': ''}} >Price Low</option>
+                                </select>
                                 </div>
                             </div>
                         </div>
@@ -184,9 +181,9 @@ rangeSlider = $(".js-range-slider").ionRangeSlider({
             type: "double",
             min:0,
             max:1000,
-            from:0,
+            from:{{$priceMin}},
             step:10,
-            to:500,
+            to:{{$priceMax}},
             skin:"round",
             max_postfix:"+",
             prefix:"$",
@@ -203,6 +200,11 @@ rangeSlider = $(".js-range-slider").ionRangeSlider({
         apply_filters();
     });
 
+    $("#sort").change(function(){
+        apply_filters();
+
+    });
+
     function apply_filters(){
         var brands = [];
 
@@ -212,13 +214,24 @@ rangeSlider = $(".js-range-slider").ionRangeSlider({
                 brands.push($(this).val());
             }
         });
-        console.log(brands.toString());
 
         var url = '{{url()->current() }}?';
 
+        //Brand Filter
+        if(brands.length > 0){
+          url += '&brand='+brands.toString()
+        }
+
+
+        //Price Range filter
         url += '&price_min='+slider.result.from+'&price_max='+slider.result.to;
 
-        window.location.href = url+'&brand='+brands.toString();
+
+        //Sorting Filter
+        url += '&sort='+$("#sort").val();
+
+
+        window.location.href = url;
     }
 
 
