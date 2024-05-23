@@ -69,6 +69,9 @@ class ProductController extends Controller
             $product->sub_category_id = $request->sub_category;
             $product->brand_id = $request->brand;
             $product->is_featured = $request->is_featured;
+            $product->shipping_returns = $request->shipping_returns;
+            $product->short_description = $request->short_description;
+
             $product->save();
 
 
@@ -93,7 +96,7 @@ class ProductController extends Controller
                     //Generate Product Thumbnail
 
                     //Large Image
-                    $sourcePath = public_path() . '/temp/' . $temImageInfo->name.$product->id;
+                    $sourcePath = public_path() . '/temp/' . $temImageInfo->name . $product->id;
                     $destPath = public_path() . '/uploads/product/large/' . $imageName;
                     $image = Image::make($sourcePath);
                     $image->resize(1400, null, function ($constraint) {
@@ -190,6 +193,8 @@ class ProductController extends Controller
             $product->sub_category_id = $request->sub_category;
             $product->brand_id = $request->brand;
             $product->is_featured = $request->is_featured;
+            $product->shipping_returns = $request->shipping_returns;
+            $product->short_description = $request->short_description;
             $product->save();
 
 

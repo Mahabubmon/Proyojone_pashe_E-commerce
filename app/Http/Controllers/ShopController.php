@@ -105,6 +105,17 @@ class ShopController extends Controller
 
     public function product($slug)
     {
-        echo $slug;
+        //$slug;
+
+        $product = Product::where("slug", $slug)->with('product_images')->first();
+
+        if ($product == null) {
+            abort(404);
+        }
+
+        $data['product'] = $product;
+
+        return view("front.product", $data);
+
     }
 }
