@@ -237,9 +237,12 @@
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h2 class="h4 mb-3">Realated product</h2>
+                            <h2 class="h4 mb-3">Related product</h2>
                             <div class="mb-3">
+                                <select class="related-product w-100 form-control" name="related_products"
+                                    id="related_products">
 
+                                </select>
                                 <p class="error"></p>
 
                             </div>
@@ -396,6 +399,23 @@
         }
     }
 
+
+
+
+    $('.related-product').select2({
+        ajax: {
+            url: '{{ route('products.getProducts')}}',
+            dataType: 'json',
+            tags: true,
+            multiple: true,
+            minimumInputLength: 3,
+            processResults: function (data) {
+                return {
+                    results: data.tags
+                };
+            }
+        }
+    });
 
 
 </script>
