@@ -140,6 +140,9 @@
                                             placeholder="Barcode" value="{{$product->barcode}}">
                                     </div>
                                 </div>
+                                <div class="card mb-3">
+
+                                </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <div class="custom-control custom-checkbox">
@@ -157,6 +160,27 @@
 
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h2 class="h4 mb-3">Related product</h2>
+                            <div class="mb-3">
+                                <select multiple class="related-product w-100" name="related_products[]"
+                                    id="related_products">
+                                    @if (!empty($relatedProducts))
+                                        @foreach ($relatedProducts as $relatedProduct)
+
+                                            <option selected value="{{$relatedProduct->id}}">{{$relatedProduct->title}}</option>
+
+                                        @endforeach
+
+                                    @endif
+
+                                </select>
+                                <p class="error"></p>
+
                             </div>
                         </div>
                     </div>
@@ -235,19 +259,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h2 class="h4 mb-3">Related product</h2>
-                            <div class="mb-3">
-                                <select class="related-product w-100 form-control" name="related_products"
-                                    id="related_products">
 
-                                </select>
-                                <p class="error"></p>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

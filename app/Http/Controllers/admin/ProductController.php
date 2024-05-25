@@ -71,6 +71,8 @@ class ProductController extends Controller
             $product->is_featured = $request->is_featured;
             $product->shipping_returns = $request->shipping_returns;
             $product->short_description = $request->short_description;
+            $product->related_products = (!empty($request->related_products)) ? implode(',', $request->related_products) : '';
+
 
             $product->save();
 
@@ -149,9 +151,19 @@ class ProductController extends Controller
 
         $subCategories = SubCategory::where('category_id', $product->category_id)->get();
 
+
+        $relatedProducts = [];
+        //fetch related products
+        if ($product->related_products != '') {
+            $productArray = explode(',', $product->related_products);
+
+            $relatedProducts = Product::whereIn('id', $productArray)->get();
+
+        }
+
         $categories = Category::orderBy("name", "asc")->get();
         $brands = Brand::orderBy("name", "asc")->get();
-        return view("admin.products.edit", compact("categories", "brands", "product", "subCategories", "productImages"));
+        return view("admin.products.edit", compact("categories", "brands", "product", "subCategories", "productImages", "relatedProducts"));
     }
 
     public function update(Request $request, $id)
@@ -195,6 +207,7 @@ class ProductController extends Controller
             $product->is_featured = $request->is_featured;
             $product->shipping_returns = $request->shipping_returns;
             $product->short_description = $request->short_description;
+            $product->related_products = (!empty($request->related_products)) ? implode(',', $request->related_products) : '';
             $product->save();
 
 
@@ -256,10 +269,10 @@ class ProductController extends Controller
 
     public function getProducts(Request $request)
     {
+        $temProduct = [];
         if ($request->term != "") {
             $products = Product::where("title", "LIKE", "%" . $request->term . "%")->get();
 
-            $temProduct = [];
             if ($products != null) {
                 foreach ($products as $product) {
                     $temProduct[] = array('id' => $product->id, 'text' => $product->title);
@@ -271,5 +284,8 @@ class ProductController extends Controller
             'tags' => $temProduct,
             'status' => true
         ]);
+
     }
+
+
 }
