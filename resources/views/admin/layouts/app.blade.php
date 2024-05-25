@@ -109,13 +109,13 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        })
+        });
 
         $(document).ready(function () {
             $(".summernote").summernote({
                 height: 250
             });
-        })
+        });
     </script>
 
     @yield('customsJs')

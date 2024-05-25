@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <input type="number" min="0" name="qty" id="qty" class="form-control"
-                                            placeholder="Qty" value="{{$product->barcode}}">
+                                            placeholder="Qty" value="{{$product->qty}}">
                                         <p class="error"></p>
 
                                     </div>
