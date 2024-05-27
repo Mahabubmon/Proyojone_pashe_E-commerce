@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <section class="section-5 pt-3 pb-3 mb-3 bg-white">
     <div class="container">
         <div class="light-font">
@@ -24,7 +25,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="accordion accordion-flush" id="accordionExample">
-
                             @if ($categories->isNotEmpty())
                                 @foreach ($categories as $key => $category)
                                     <div class="accordion-item">

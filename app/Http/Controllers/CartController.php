@@ -210,4 +210,10 @@ class CartController extends Controller
     }
 
 
+    public function processCheckout()
+    {
+
+    }
+
+
 }
