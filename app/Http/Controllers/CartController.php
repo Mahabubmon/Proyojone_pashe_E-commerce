@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\CustomerAddress;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class CartController extends Controller
@@ -210,8 +212,50 @@ class CartController extends Controller
     }
 
 
-    public function processCheckout()
+    public function processCheckout(Request $request)
     {
+        // STEP-1 Apply validation
+        $validator = Validator::make($request->all(), [
+
+            'first_name' => 'required|min:5',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'country' => 'required',
+            'address' => 'required|30',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'mobile' => 'required'
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => 'Please fix the errors',
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
+
+        // STEP-2 Save users address
+
+        // $customerAddress =
+        $user = Auth::user();
+        CustomerAddress::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'first_name' => $request->first_name,
+                'lasr_name' => $request->last_name,
+                'email' => $request->email,
+                'mobile' => $request->mobile,
+                'country_id' => $request->country,
+                'address' => $request->address,
+                'apartment' => $request->apartment,
+                'city' => $request->city,
+                'state' => $request->state,
+                'zip' => $request->zip
+            ]
+        );
 
     }
 
