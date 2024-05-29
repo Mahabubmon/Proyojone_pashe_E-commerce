@@ -29,14 +29,16 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="first_name" id="first_name" class="form-control"
-                                            placeholder="First Name">
+                                            placeholder="First Name"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->first_name : '' }}">
                                         <p></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="last_name" id="last_name" class="form-control"
-                                            placeholder="Last Name">
+                                            placeholder="Last Name"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->last_name : '' }}">
                                         <p></p>
 
                                     </div>
@@ -45,7 +47,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="email" id="email" class="form-control"
-                                            placeholder="Email">
+                                            placeholder="Email"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->email : '' }}">
                                         <p></p>
 
                                     </div>
@@ -57,7 +60,8 @@
                                             <option value="">Select a Country</option>
                                             @if ($countries->isNotEmpty())
                                                 @foreach ($countries as $country)
-                                                    <option value="{{$country->id}}">{{$country->name}}</option>
+                                                    <option {{(!empty($customerAddress) && $customerAddress->country_id == $country->id) ? 'selected' : '' }}
+                                                        value="{{$country->id}}">{{$country->name}}</option>
 
                                                 @endforeach
 
@@ -71,7 +75,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <textarea name="address" id="address" cols="30" rows="3" placeholder="Address"
-                                            class="form-control"></textarea>
+                                            class="form-control">{{(!empty($customerAddress)) ? $customerAddress->address : '' }}</textarea>
                                         <p></p>
 
                                     </div>
@@ -80,14 +84,15 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="apartment" id="apartment" class="form-control"
-                                            placeholder="Apartment, suite, unit, etc. (optional)">
+                                            placeholder="Apartment, suite, unit, etc. (optional)"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->apartment : '' }}">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <input type="text" name="city" id="city" class="form-control"
-                                            placeholder="City">
+                                        <input type="text" name="city" id="city" class="form-control" placeholder="City"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->city : '' }}">
                                         <p></p>
 
                                     </div>
@@ -96,7 +101,8 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <input type="text" name="state" id="state" class="form-control"
-                                            placeholder="State">
+                                            placeholder="State"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->state : '' }}">
                                         <p></p>
 
                                     </div>
@@ -104,7 +110,8 @@
 
                                 <div class="col-md-4">
                                     <div class="mb-3">
-                                        <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip">
+                                        <input type="text" name="zip" id="zip" class="form-control" placeholder="Zip"
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->zip : '' }}">
                                         <p></p>
 
                                     </div>
@@ -113,7 +120,8 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <input type="text" name="mobile" id="mobile" class="form-control"
-                                            placeholder="Mobile No.">
+                                            placeholder="Mobile No."
+                                            value="{{(!empty($customerAddress)) ? $customerAddress->mobile : '' }}">
                                         <p></p>
 
                                     </div>
@@ -226,6 +234,8 @@
     $("#orderForm").submit(function () {
         event.preventDefault();
 
+        $('button[type="submit"]').prop('disabled', true);
+
         $.ajax({
             url: '{{route('front.processCheckout')}}',
             type: 'POST',
@@ -233,61 +243,71 @@
             dataType: 'json',
             success: function (response) {
                 var errors = response.errors;
+                $('button[type="submit"]').prop('disabled', false);
 
-                if (errors.first_name) {
-                    $("#first_name").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.first_name);
+
+                if (response.status == false) {
+
+                    if (errors.first_name) {
+                        $("#first_name").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.first_name);
+                    } else {
+                        $("#first_name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.last_name) {
+                        $("#last_name").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.last_name);
+                    } else {
+                        $("#last_name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.email) {
+                        $("#email").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.email);
+                    } else {
+                        $("#email").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.country) {
+                        $("#country").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.country);
+                    } else {
+                        $("#country").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.address) {
+                        $("#address").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.address);
+                    } else {
+                        $("#address").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.state) {
+                        $("#state").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.state);
+                    } else {
+                        $("#state").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.city) {
+                        $("#city").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.city);
+                    } else {
+                        $("#city").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.zip) {
+                        $("#zip").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.zip);
+                    } else {
+                        $("#zip").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+                    if (errors.mobile) {
+                        $("#mobile").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.mobile);
+                    } else {
+                        $("#mobile").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
+
+                    }
+
                 } else {
-                    $("#first_name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
+                    window.location.href = "{{url('/thanks/')}}/"+response.orderId;
                 }
-                if (errors.last_name) {
-                    $("#last_name").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.last_name);
-                } else {
-                    $("#last_name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
 
-                }
-                if (errors.email) {
-                    $("#email").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.email);
-                } else {
-                    $("#email").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
 
-                }
-                if (errors.country) {
-                    $("#country").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.country);
-                } else {
-                    $("#country").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
-                }
-                if (errors.address) {
-                    $("#address").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.address);
-                } else {
-                    $("#address").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
-                }
-                if (errors.state) {
-                    $("#state").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.state);
-                } else {
-                    $("#state").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
-                }
-                if (errors.city) {
-                    $("#city").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.city);
-                } else {
-                    $("#city").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
-                }
-                if (errors.zip) {
-                    $("#zip").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.zip);
-                } else {
-                    $("#zip").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
-                }
-                if (errors.mobile) {
-                    $("#mobile").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors.mobile);
-                } else {
-                    $("#mobile").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html('');
-
-                }
             }
         });
     });

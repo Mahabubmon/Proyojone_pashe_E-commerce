@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\CustomerAddress;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -202,13 +203,15 @@ class CartController extends Controller
 
         }
 
+        $customerAddress = CustomerAddress::where('user_id', Auth::user()->id)->first();
 
         session()->forget('url.intended');
 
         $countries = Country::orderBy('name', 'ASC')->get();
 
         return view('front.checkout', [
-            'countries' => $countries
+            'countries' => $countries,
+            'customerAddress' => $customerAddress,
         ]);
     }
 
@@ -251,7 +254,7 @@ class CartController extends Controller
                 'mobile' => $request->mobile,
                 'country_id' => $request->country,
                 'address' => $request->address,
-                'apartment' =>$request->apartment,
+                'apartment' => $request->apartment,
                 'city' => $request->city,
                 'state' => $request->state,
                 'zip' => $request->zip
@@ -260,24 +263,82 @@ class CartController extends Controller
 
         // STEP-3 store in  Orders table
 
-        if($request->payment_method == 'cod'){
+        if ($request->payment_method == 'cod') {
             $order = new Order;
 
             $shipping = 0;
             $discount = 0;
-            $subTotal = Cart::subtotal(2,'.','');
-            $grandTotal = $subTotal+$shipping;
+            $subTotal = Cart::subtotal(2, '.', '');
+            $grandTotal = $subTotal + $shipping;
 
             $order->subtotal = $subTotal;
             $order->shipping = $shipping;
-            $order->subtotal = $subTotal;
-            $order->subtotal = $subTotal;
+            $order->grand_total = $grandTotal;
+            $order->user_id = $user->id;
 
-        }else{
+
+
+
+            $order->first_name = $request->first_name;
+            $order->last_name = $request->last_name;
+            $order->email = $request->email;
+            $order->mobile = $request->mobile;
+            $order->country_id = $request->country;
+            $order->address = $request->address;
+            $order->apartment = $request->apartment;
+            $order->city = $request->city;
+            $order->state = $request->state;
+            $order->zip = $request->zip;
+            $order->notes = $request->notes;
+            $order->save();
+
+            // STEP-4 store  Orders items in order items table
+
+            foreach (Cart::content() as $item) {
+
+                $orderItem = new OrderItem;
+                $orderItem->product_id = $item->id;
+                $orderItem->order_id = $order->id;
+                $orderItem->name = $item->name;
+                $orderItem->product_id = $item->id;
+                $orderItem->qty = $item->qty;
+                $orderItem->price = $item->price;
+                $orderItem->total = $item->total;
+                $orderItem->save();
+            }
+
+            session()->flash('success', 'You Have successfully placed your order.');
+
+
+            Cart::destroy();
+            return response()->json([
+                'message' => 'Order saved successfully.',
+                'orderId' => $order->id,
+                'status' => true
+
+            ]);
+
+
+
+        } else {
 
         }
 
 
+
+
+
+    }
+
+    public function thankyou($id)
+    {
+
+        return view(
+            'front.thanks',
+            [
+                'id' => $id
+            ]
+        );
     }
 
 
