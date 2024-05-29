@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\CustomerAddress;
+use App\Models\Order;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -221,7 +222,7 @@ class CartController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'country' => 'required',
-            'address' => 'required|30',
+            'address' => 'required|min:30',
             'city' => 'required',
             'state' => 'required',
             'zip' => 'required',
@@ -245,17 +246,37 @@ class CartController extends Controller
             ['user_id' => $user->id],
             [
                 'first_name' => $request->first_name,
-                'lasr_name' => $request->last_name,
+                'last_name' => $request->last_name,
                 'email' => $request->email,
                 'mobile' => $request->mobile,
                 'country_id' => $request->country,
                 'address' => $request->address,
-                'apartment' => $request->apartment,
+                'apartment' =>$request->apartment,
                 'city' => $request->city,
                 'state' => $request->state,
                 'zip' => $request->zip
             ]
         );
+
+        // STEP-3 store in  Orders table
+
+        if($request->payment_method == 'cod'){
+            $order = new Order;
+
+            $shipping = 0;
+            $discount = 0;
+            $subTotal = Cart::subtotal(2,'.','');
+            $grandTotal = $subTotal+$shipping;
+
+            $order->subtotal = $subTotal;
+            $order->shipping = $shipping;
+            $order->subtotal = $subTotal;
+            $order->subtotal = $subTotal;
+
+        }else{
+
+        }
+
 
     }
 

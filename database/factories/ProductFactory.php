@@ -22,18 +22,18 @@ class ProductFactory extends Factory
         $title = fake()->unique()->name();
         $slug = Str::slug($title);
 
-        $subCategories = [8, 9];
+        $subCategories = [1, 3];
         $subCatRandKey = array_rand($subCategories);
 
 
-        $brands = [1, 2, 3, 7];
+        $brands = [1, 2, 3];
         $brandRandKey = array_rand($brands);
 
         return [
             //
             "title" => $title,
             "slug" => $slug,
-            "category_id" => 56,
+            "category_id" => 3,
             'sub_category_id' => $subCategories[$subCatRandKey],
             'brand_id' => $brands[$brandRandKey],
             'price' => rand(10, 1000),
