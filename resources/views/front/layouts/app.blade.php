@@ -178,7 +178,8 @@
                 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="copy-right text-center">
-                            <p>© Copyright 2022 Amazing Shop. All Rights Reserved</p>
+                        <p>Copyright &copy; 2022-<span id="currentYear"></span> Rahman Group Ltd. All rights reserved.</p>
+
                         </div>
                     </div>
                 </div>
@@ -236,6 +237,10 @@
             });
 
             }
+
+
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
     </script>
 
     @yield('customJs')
