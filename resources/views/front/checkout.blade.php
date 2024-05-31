@@ -157,11 +157,13 @@
                             </div>
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="h6"><strong>Shipping</strong></div>
-                                <div class="h6"><strong>${{number_format($totalShippingCharge,2)}}</strong></div>
+                                <div class="h6"><strong
+                                        id="shippingCharge">${{number_format($totalShippingCharge, 2)}}</strong></div>
                             </div>
                             <div class="d-flex justify-content-between mt-2 summery-end">
                                 <div class="h5"><strong>Total</strong></div>
-                                <div class="h5"><strong>${{$grandTotal}}</strong></div>
+                                <div class="h5" id="grandTotal"><strong>${{number_format($grandTotal, 2)}}</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -314,15 +316,17 @@
 
 
 
-    $("country").change(function(){
-
+    $("#country").change(function () {
         $.ajax({
-            url:'{{route("front.getOrderSummery")}}',
-            type:'POST',
-            data:{country_id:$(this).val()},
-            dataType:'json',
-            success:function(response){
-
+            url: '{{route("front.getOrderSummery")}}',
+            type: 'POST',
+            data: { country_id: $(this).val() },
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == ture) {
+                    $("#shippingAmount").html(response.shippingCharge);
+                    $("#grandTotal").html(response.grandTotal);
+                }
             }
         });
     });

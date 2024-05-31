@@ -45,7 +45,7 @@ Route::post('/delete-item', [CartController::class, 'deleteItem'])->name('front.
 Route::get('/checkout', [CartController::class, 'checkout'])->name('front.checkout');
 Route::post('/process-checkout', [CartController::class, 'processCheckout'])->name('front.processCheckout');
 Route::get('/thanks/{orderId}', [CartController::class, 'thankyou'])->name('front.thankyou');
-Route::get('/get-order-summery', [CartController::class, 'getOrderSummery'])->name('front.getOrderSummery');
+Route::post('/get-order-summery', [CartController::class, 'getOrderSummery'])->name('front.getOrderSummery');
 
 
 
@@ -99,7 +99,7 @@ Route::group(['prefix' => 'admin'], function () {
         //slug portion
         Route::get('/getSlug', function (Request $request) {
             $slug = '';
-            if (!empty ($request->title)) {
+            if (!empty($request->title)) {
                 $slug = Str::slug($request->title);
             }
 
