@@ -323,7 +323,7 @@
             data: { country_id: $(this).val() },
             dataType: 'json',
             success: function (response) {
-                if (response.status == ture) {
+                if (response.status == true) {
                     $("#shippingAmount").html(response.shippingCharge);
                     $("#grandTotal").html(response.grandTotal);
                 }
