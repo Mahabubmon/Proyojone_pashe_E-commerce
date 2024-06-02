@@ -343,10 +343,6 @@ class CartController extends Controller
 
         }
 
-
-
-
-
     }
 
     public function thankyou($id)
