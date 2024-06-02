@@ -52,6 +52,7 @@ Route::post('/get-order-summery', [CartController::class, 'getOrderSummery'])->n
 
 
 
+
 Route::group(['prefix' => 'account'], function () {
     Route::group(['middleware' => 'guest'], function () {
         //front user account route
