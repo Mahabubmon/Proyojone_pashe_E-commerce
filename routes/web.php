@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminLoginController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DiscountCodeController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductImageController;
@@ -132,7 +133,6 @@ Route::group(['prefix' => 'admin'], function () {
 
         //Product Routes
         Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
         Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
         Route::post('/products', [ProductController::class, 'store'])->name('products.store');
         Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
@@ -159,6 +159,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/shipping/{id}', [ShippingController::class, 'edit'])->name('shipping.edit');
         Route::put('/shipping/{id}', [ShippingController::class, 'update'])->name('shipping.update');
         Route::delete('/shipping/{id}', [ShippingController::class, 'destroy'])->name('shipping.delete');
+
+        //Coupon Code Routes
+        // Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/coupons/create', [DiscountCodeController::class, 'create'])->name('coupons.create');
+        // Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+        // Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        // Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+        // Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.delete');
 
     });
 });

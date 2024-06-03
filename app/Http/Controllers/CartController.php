@@ -375,10 +375,6 @@ class CartController extends Controller
         } else {
 
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 5df617a780f4823cbebca3cae5ecab63ef4be39a
     }
 
     public function thankyou($id)
