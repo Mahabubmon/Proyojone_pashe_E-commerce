@@ -36,30 +36,33 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Coupon Code name">
+                                <input type="text" name="name" id="name" class="form-control"
+                                    placeholder="Coupon Code name">
                                 <p></p>
 
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <div class="mb-3"> 
-                            <label for="description">Description</label>
-                                <input type="text" name="description" id="description" class="form-control" placeholder="Description">
-
+                            <div class="mb-3">
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" cols="30" rows="10"
+                                    class="summernote"></textarea>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-3">
-                            <label for="Max Uses">Max Uses</label>
-                                <input type="number" name="max_uses" id="max_uses" class="form-control" placeholder="Max Uses">
+                                <label for="Max Uses">Max Uses</label>
+                                <input type="number" name="max_uses" id="max_uses" class="form-control"
+                                    placeholder="Max Uses">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                            <label for="Max Uses">Max Uses User</label>
-                                <input type="text" name="max_uses_user" id="max_uses_user" class="form-control" placeholder="Max Uses User">
+                                <label for="Max Uses">Max Uses User</label>
+                                <input type="text" name="max_uses_user" id="max_uses_user" class="form-control"
+                                    placeholder="Max Uses User">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -73,23 +76,39 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                            <label for="Discount Amount">Discount Amount</label>
-                                <input type="text" name="discount_amount" id="discount_amount" class="form-control" placeholder="Discount Amount">
+                                <label for="Discount Amount">Discount Amount</label>
+                                <input type="text" name="discount_amount" id="discount_amount" class="form-control"
+                                    placeholder="Discount Amount">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                            <label for="Min Amount">Min Amount</label>
-                                <input type="text" name="min_amount" id="min_amount" class="form-control" placeholder="Min Amount">
+                                <label for="Min Amount">Min Amount</label>
+                                <input type="text" name="min_amount" id="min_amount" class="form-control"
+                                    placeholder="Min Amount">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="showHome">Max Uses</label>
-                                <select name="showHome" id="showHome" class="form-control">
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
+                                <label for="status">Status</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="1">Active</option>
+                                    <option value="0">Block</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="Starts At">Starts At</label>
+                                <input type="text" name="stats_at" id="stats_at" class="form-control"
+                                    placeholder="Starts At">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="Expires At">Expires At</label>
+                                <input type="text" name="expires_at" id="expires_at" class="form-control"
+                                    placeholder="Expires At">
                             </div>
                         </div>
                     </div>
