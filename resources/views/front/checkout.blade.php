@@ -12,7 +12,7 @@
         </div>
     </div>
 </section>
-
+<!-- this is the section where the data main section will come -->
 <section class="section-9 pt-4">
     <div class="container">
         <form action="" id="orderForm" name="orderForm" method="POST">
