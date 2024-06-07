@@ -21,15 +21,15 @@
     <div class="container-fluid">
 
 
-        <form action="" method="POST" id="categoryForm" name="categoryForm">
+        <form action="" method="POST" id="discountForm" name="discountForm">
 
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="code">Code</label>
-                                <input type="text" name="Code" id="Code" class="form-control" placeholder="Coupon Code">
+                                <label for="Code">Code</label>
+                                <input type="text" name="code" id="code" class="form-control" placeholder="Coupon Code">
                                 <p></p>
                             </div>
                         </div>
@@ -43,13 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" cols="30" rows="10"
-                                    class="summernote"></textarea>
-                            </div>
-                        </div>
+
 
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -79,6 +73,8 @@
                                 <label for="Discount Amount">Discount Amount</label>
                                 <input type="text" name="discount_amount" id="discount_amount" class="form-control"
                                     placeholder="Discount Amount">
+                                <p></p>
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -100,7 +96,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Starts At">Starts At</label>
-                                <input type="text" name="stats_at" id="stats_at" class="form-control"
+                                <input type="text" name="starts_at" id="starts_at" class="form-control"
                                     placeholder="Starts At">
                             </div>
                         </div>
@@ -109,6 +105,13 @@
                                 <label for="Expires At">Expires At</label>
                                 <input type="text" name="expires_at" id="expires_at" class="form-control"
                                     placeholder="Expires At">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" cols="30" rows="10"
+                                    class="summernote"></textarea>
                             </div>
                         </div>
                     </div>
@@ -132,7 +135,21 @@
 
 
 <script>
-    $("#categoryForm").submit(function (event) {
+
+
+    $(document).ready(function () {
+        $('#starts_at').datetimepicker({
+            // options here
+            format: 'Y-m-d H:i:s',
+        });
+        $('#expires_at').datetimepicker({
+            // options here
+            format: 'Y-m-d H:i:s',
+        });
+    });
+
+
+    $("#discountForm").submit(function (event) {
         event.preventDefault();
 
         var element = $(this);
@@ -140,7 +157,7 @@
         $("button[type='submit']").prop('disabled', true);
 
         $.ajax({
-            url: '{{route('categories.store')}}',
+            url: '{{route('coupons.store')}}',
             type: 'POST',
             data: element.serializeArray(),
             dataType: 'json',
@@ -148,22 +165,22 @@
                 $("button[type='submit']").prop('disabled', false);
 
                 if (response['max_uses'] == true) {
-                    window.location.href = "{{route('categories.index')}}";
+                    // window.location.href = "{{route('categories.index')}}";
 
-                    $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
-                    $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    // $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    // $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                 } else {
                     var errors = response['errors'];
 
-                    if (errors['name']) {
-                        $("#name").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['name']);
+                    if (errors['code']) {
+                        $("#code").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['code']);
                     } else {
-                        $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                        $("#code").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     }
-                    if (errors['slug']) {
-                        $("#slug").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['slug']);
+                    if (errors['discount_amount']) {
+                        $("#discount_amount").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['discount_amount']);
                     } else {
-                        $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                        $("#discount_amount").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     }
                 }
             },
@@ -192,31 +209,6 @@
         });
     });
 
-
-
-
-
-    Dropzone.autoDiscover = false;
-    const dropzone = $("#image").dropzone({
-        init: function () {
-            this.on('addedfile', function (file) {
-                if (this.files.length > 1) {
-                    this.removeFile(this.files[0]);
-                }
-            });
-        },
-        url: "{{ route('temp-images.create') }}",
-        maxFiles: 1,
-        paramName: 'image',
-        addRemoveLinks: true,
-        acceptedFiles: "image/jpeg,image/png,image/gif",
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }, success: function (file, response) {
-            $("#image_id").val(response.image_id);
-            //console.log(response)
-        }
-    });
 </script>
 
 @endsection
