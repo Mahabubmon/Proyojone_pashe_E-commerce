@@ -161,7 +161,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('/shipping/{id}', [ShippingController::class, 'destroy'])->name('shipping.delete');
 
         //Coupon Code Routes
-        // Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/coupons', [DiscountCodeController::class, 'index'])->name('coupons.index');
         Route::get('/coupons/create', [DiscountCodeController::class, 'create'])->name('coupons.create');
         Route::post('/coupons', [DiscountCodeController::class, 'store'])->name('coupons.store');
         // Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');

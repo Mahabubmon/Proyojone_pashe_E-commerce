@@ -165,10 +165,12 @@
                 $("button[type='submit']").prop('disabled', false);
 
                 if (response['max_uses'] == true) {
-                    // window.location.href = "{{route('categories.index')}}";
+                    window.location.href = "{{route('coupons.index')}}";
 
-                    // $("#name").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
-                    // $("#slug").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    $("#code").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    $("#discount_amount").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    $("#starts_at").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    $("#expires_at").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                 } else {
                     var errors = response['errors'];
 
@@ -181,6 +183,16 @@
                         $("#discount_amount").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['discount_amount']);
                     } else {
                         $("#discount_amount").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    }
+                    if (errors['starts_at']) {
+                        $("#starts_at").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['starts_at']);
+                    } else {
+                        $("#starts_at").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
+                    }
+                    if (errors['expires_at']) {
+                        $("#expires_at").addClass('is-invalid').siblings('p').addClass('invalid-feedback').html(errors['expires_at']);
+                    } else {
+                        $("#expires_at").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
                     }
                 }
             },
