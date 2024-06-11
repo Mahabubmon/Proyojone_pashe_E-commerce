@@ -96,15 +96,15 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Starts At">Starts At</label>
-                                <input type="text" name="starts_at" id="starts_at" class="form-control"
-                                    placeholder="Starts At">
+                                <input autocomplete="off" type="text" name="starts_at" id="starts_at"
+                                    class="form-control" placeholder="Starts At">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="Expires At">Expires At</label>
-                                <input type="text" name="expires_at" id="expires_at" class="form-control"
-                                    placeholder="Expires At">
+                                <input autocomplete="off" type="text" name="expires_at" id="expires_at"
+                                    class="form-control" placeholder="Expires At">
                             </div>
                         </div>
                         <div class="col-md-6">
