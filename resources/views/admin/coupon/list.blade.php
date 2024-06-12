@@ -92,7 +92,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{route('categories.edit', $discountCoupon->id)}}">
+                                        <a href="{{route('coupons.edit', $discountCoupon->id)}}">
                                             <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path
@@ -139,10 +139,10 @@
 
 
 <script>
-    function deleteCategory(id) {
+    function deletediscountCoupon(id) {
 
 
-        var url = '{{route('categories.delete', 'ID')}}';
+        var url = '{{route('coupons.delete', 'ID')}}';
         var newUrl = url.replace("ID", id);
 
 
@@ -157,7 +157,7 @@
                 },
                 success: function (response) {
                     if (response['status']) {
-                        window.location.href = "{{route('categories.index')}}";
+                        window.location.href = "{{route('coupons.index')}}";
                     }
                 }
 
