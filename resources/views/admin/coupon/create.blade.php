@@ -9,7 +9,7 @@
                 <h1>Create Coupon Code</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{route('categories.index')}}" class="btn btn-primary">Back</a>
+                <a href="{{route('coupons.index')}}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -119,7 +119,7 @@
             </div>
             <div class="pb-5 pt-3">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{route('categories.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
+                <a href="{{route('coupons.index')}}" class="btn btn-outline-dark ml-3">Cancel</a>
             </div>
 
         </form>
@@ -164,7 +164,7 @@
             success: function (response) {
                 $("button[type='submit']").prop('disabled', false);
 
-                if (response['max_uses'] == true) {
+                if (response['status'] == true) {
                     window.location.href = "{{route('coupons.index')}}";
 
                     $("#code").removeClass('is-invalid').siblings('p').removeClass('invalid-feedback').html("");
