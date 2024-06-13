@@ -167,6 +167,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="input-group apply-coupan mt-4">
+                        <input type="text" placeholder="Coupon Code" class="form-control" name="discount_code"
+                            id="discount_code">
+                        <button class="btn btn-dark" type="button" id="apply-discount">Apply Coupon</button>
+                    </div>
 
                     <div class="card payment-form ">
                         <h3 class="card-title h5 mb-3">Payment Method</h3>
@@ -328,6 +333,16 @@
                     $("#grandTotal").html(response.grandTotal);
                 }
             }
+        });
+    });
+
+    $("apply-discount").click(function () {
+        $.ajax({
+            url: '{{route("front.getOrderSummery")}}',
+            type: 'POST',
+            data: { country_id: $(this).val() },
+            dataType: 'json',
+            success: function (response) { }
         });
     });
 </script>
