@@ -71,7 +71,7 @@ class CategoryController extends Controller
                 $category->image = $newImageName;
                 $category->save();
             }
-
+            //session message for flash
             $request->session()->flash("success", "Category added successfully");
 
             return response()->json([
