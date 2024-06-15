@@ -338,9 +338,9 @@
 
     $("apply-discount").click(function () {
         $.ajax({
-            url: '{{route("front.getOrderSummery")}}',
+            url: '{{route("front.applyDiscount")}}',
             type: 'POST',
-            data: { country_id: $(this).val() },
+            data: { code: $("#discount_code").val(), country: ("country").val() },
             dataType: 'json',
             success: function (response) { }
         });
