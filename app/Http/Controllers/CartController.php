@@ -390,9 +390,11 @@ class CartController extends Controller
 
     public function getOrderSummery(Request $request)
     {
+
         $subTotal = Cart::subtotal(2, '.', '');
         if ($request->country_id > 0) {
 
+            //data fetch from shippingCharge table
             $shippingInfo = ShippingCharge::where('country_id', $request->country_id)->first();
 
             $totalQty = 0;
