@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\CustomerAddress;
+use App\Models\DiscountCoupon;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ShippingCharge;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -438,7 +440,29 @@ class CartController extends Controller
 
     public function applyDiscount(Request $request)
     {
+        $code = DiscountCoupon::where('code', $request->code)->first();
 
+        if ($code == null) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalide discount coupon',
+
+            ]);
+        }
+
+        //check if coupon start date is valid or not
+
+        $now = Carbon::now();
+        if ($code->start_at != "") {
+            $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $code->starts_at);
+
+            if ($now->lt($startDate)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid discount coupon',
+                ]);
+            }
+        }
     }
 
 
