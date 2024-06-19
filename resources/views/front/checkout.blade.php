@@ -311,7 +311,7 @@
                     }
 
                 } else {
-                    window.location.href = "{{url('/thanks/')}}/"+response.orderId;
+                    window.location.href = "{{url('/thanks/')}}/" + response.orderId;
                 }
 
 
@@ -340,7 +340,7 @@
         $.ajax({
             url: '{{route("front.applyDiscount")}}',
             type: 'POST',
-            data: { code: $("#discount_code").val(), country: ("country").val() },
+            data: { code: $("#discount_code").val(), country_id: ("country").val() },
             dataType: 'json',
             success: function (response) { }
         });

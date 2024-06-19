@@ -394,6 +394,17 @@ class CartController extends Controller
     {
 
         $subTotal = Cart::subtotal(2, '.', '');
+
+        //apply discount here
+        if(session()->has('code')){
+            $code = session()->get('code');
+            if($code->type == 'percent'){
+                $discount = ($code->discount_amount/100)*$subTotal;
+            }else{
+                $discount = $code->discount_amount;
+            }
+        }
+
         if ($request->country_id > 0) {
 
             //data fetch from shippingCharge table
@@ -411,6 +422,7 @@ class CartController extends Controller
                 return response()->json([
                     'status' => true,
                     'grandTotal' => number_format($grandTotal, 2),
+                    'discount'=>$discount,
                     'shippingCharge' => number_format($shippingCharge)
 
                 ]);
@@ -422,6 +434,7 @@ class CartController extends Controller
                 return response()->json([
                     'status' => true,
                     'grandTotal' => number_format($grandTotal, 2),
+                    'discount'=>$discount,
                     'shippingCharge' => number_format($shippingCharge)
 
                 ]);
@@ -463,6 +476,18 @@ class CartController extends Controller
                 ]);
             }
         }
+        if ($code->expires_at != "") {
+            $endDate = Carbon::createFromFormat('Y-m-d H:i:s', $code->expires_at);
+
+            if ($now->lt($endDate)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid discount coupon',
+                ]);
+            }
+        }
+        session()->put('code',$code);
+        return $this->getOrderSummery()
     }
 
 
