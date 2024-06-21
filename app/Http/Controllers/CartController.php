@@ -396,11 +396,11 @@ class CartController extends Controller
         $subTotal = Cart::subtotal(2, '.', '');
 
         //apply discount here
-        if(session()->has('code')){
+        if (session()->has('code')) {
             $code = session()->get('code');
-            if($code->type == 'percent'){
-                $discount = ($code->discount_amount/100)*$subTotal;
-            }else{
+            if ($code->type == 'percent') {
+                $discount = ($code->discount_amount / 100) * $subTotal;
+            } else {
                 $discount = $code->discount_amount;
             }
         }
@@ -417,24 +417,24 @@ class CartController extends Controller
 
             if ($shippingInfo != null) {
                 $shippingCharge = $totalQty * $shippingInfo->amount;
-                $grandTotal = $subTotal + $shippingCharge;
+                $grandTotal = ($subTotal - $discount) + $shippingCharge;
 
                 return response()->json([
                     'status' => true,
                     'grandTotal' => number_format($grandTotal, 2),
-                    'discount'=>$discount,
+                    'discount' => $discount,
                     'shippingCharge' => number_format($shippingCharge)
 
                 ]);
             } else {
                 $shippingInfo = ShippingCharge::where('country_id', 'rest_of_world')->first();
                 $shippingCharge = $totalQty * $shippingInfo->amount;
-                $grandTotal = $subTotal + $shippingCharge;
+                $grandTotal = ($subTotal - $discount) + $shippingCharge;
 
                 return response()->json([
                     'status' => true,
                     'grandTotal' => number_format($grandTotal, 2),
-                    'discount'=>$discount,
+                    'discount' => $discount,
                     'shippingCharge' => number_format($shippingCharge)
 
                 ]);
@@ -443,7 +443,8 @@ class CartController extends Controller
         } else {
             return response()->json([
                 'status' => true,
-                'grandTotal' => number_format($subTotal, 2),
+                'grandTotal' => number_format(($subTotal - $discount), 2),
+                'discount' => $discount,
                 'shippingCharge' => number_format(0, 2)
 
             ]);
@@ -486,8 +487,8 @@ class CartController extends Controller
                 ]);
             }
         }
-        session()->put('code',$code);
-        return $this->getOrderSummery()
+        session()->put('code', $code);
+        return $this->getOrderSummery();
     }
 
 
