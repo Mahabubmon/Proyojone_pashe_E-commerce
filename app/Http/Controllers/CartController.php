@@ -190,6 +190,7 @@ class CartController extends Controller
 
     public function checkout()
     {
+        $discount = 0;
 
         //if cart is empty
         if (Cart::count() == 0) {
@@ -242,6 +243,7 @@ class CartController extends Controller
             'countries' => $countries,
             'customerAddress' => $customerAddress,
             'totalShippingCharge' => $totalShippingCharge,
+            'discount' => $discount,
             'grandTotal' => $grandTotal
         ]);
     }
@@ -488,7 +490,7 @@ class CartController extends Controller
             }
         }
         session()->put('code', $code);
-        return $this->getOrderSummery();
+        return $this->getOrderSummery($request);
     }
 
 

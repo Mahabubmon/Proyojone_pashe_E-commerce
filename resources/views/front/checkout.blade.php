@@ -151,10 +151,18 @@
                                     <div class="h6">${{$item->price * $item->qty}}</div>
                                 </div>
                             @endforeach
+
+
                             <div class="d-flex justify-content-between summery-end">
                                 <div class="h6"><strong>Subtotal</strong></div>
                                 <div class="h6"><strong>${{Cart::subtotal()}}</strong></div>
                             </div>
+
+                            <div class="d-flex justify-content-between summery-end">
+                                <div class="h6"><strong>Discount</strong></div>
+                                <div class="h6"><strong>${{$discount}}</strong></div>
+                            </div>
+
                             <div class="d-flex justify-content-between mt-2">
                                 <div class="h6"><strong>Shipping</strong></div>
                                 <div class="h6"><strong
@@ -342,7 +350,13 @@
             type: 'POST',
             data: { code: $("#discount_code").val(), country_id: ("country").val() },
             dataType: 'json',
-            success: function (response) { }
+            success: function (response) {
+
+                if (response.status == true) {
+                    $("#shippingAmount").html(response.shippingCharge);
+                    $("#grandTotal").html(response.grandTotal);
+                }
+            }
         });
     });
 </script>
