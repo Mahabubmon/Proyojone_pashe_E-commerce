@@ -344,11 +344,15 @@
         });
     });
 
-    $("apply-discount").click(function () {
+    $("#apply-discount").click(function () {
+
         $.ajax({
             url: '{{route("front.applyDiscount")}}',
             type: 'POST',
-            data: { code: $("#discount_code").val(), country_id: ("country").val() },
+            data: {
+            code: $("#discount_code").val(),
+            country_id: $("#country").val()  // Corrected this line
+        },
             dataType: 'json',
             success: function (response) {
 
