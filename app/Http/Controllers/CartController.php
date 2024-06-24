@@ -456,42 +456,41 @@ class CartController extends Controller
 
     public function applyDiscount(Request $request)
     {
-        dd($request->discount_code);
-        // $code = DiscountCoupon::where('code', $request->code)->first();
+        $code = DiscountCoupon::where('code', $request->code)->first();
 
-        // if ($code == null) {
-        //     return response()->json([
-        //         'status' => false,
-        //         'message' => 'Invalide discount coupon',
+        if ($code == null) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Invalide discount coupon',
 
-        //     ]);
-        // }
+            ]);
+        }
 
-        // //check if coupon start date is valid or not
+        //check if coupon start date is valid or not
 
-        // $now = Carbon::now();
-        // if ($code->start_at != "") {
-        //     $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $code->starts_at);
+        $now = Carbon::now();
+        if ($code->start_at != "") {
+            $startDate = Carbon::createFromFormat('Y-m-d H:i:s', $code->starts_at);
 
-        //     if ($now->lt($startDate)) {
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'Invalid discount coupon',
-        //         ]);
-        //     }
-        // }
-        // if ($code->expires_at != "") {
-        //     $endDate = Carbon::createFromFormat('Y-m-d H:i:s', $code->expires_at);
+            if ($now->lt($startDate)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid discount coupon',
+                ]);
+            }
+        }
+        if ($code->expires_at != "") {
+            $endDate = Carbon::createFromFormat('Y-m-d H:i:s', $code->expires_at);
 
-        //     if ($now->lt($endDate)) {
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'Invalid discount coupon',
-        //         ]);
-        //     }
-        // }
-        // session()->put('code', $code);
-        // return $this->getOrderSummery($request);
+            if ($now->lt($endDate)) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid discount coupon',
+                ]);
+            }
+        }
+        session()->put('code', $code);
+        return $this->getOrderSummery($request);
     }
 
 

@@ -160,7 +160,7 @@
 
                             <div class="d-flex justify-content-between summery-end">
                                 <div class="h6"><strong>Discount</strong></div>
-                                <div class="h6"><strong>${{$discount}}</strong></div>
+                                <div class="h6"><strong id="discount_value">${{$discount}}</strong></div>
                             </div>
 
                             <div class="d-flex justify-content-between mt-2">
@@ -350,15 +350,16 @@
             url: '{{route("front.applyDiscount")}}',
             type: 'POST',
             data: {
-            code: $("#discount_code").val(),
-            country_id: $("#country").val()  // Corrected this line
-        },
+                code: $("#discount_code").val(),
+                country_id: $("#country").val()  // Corrected this line
+            },
             dataType: 'json',
             success: function (response) {
 
                 if (response.status == true) {
                     $("#shippingAmount").html(response.shippingCharge);
                     $("#grandTotal").html(response.grandTotal);
+                    $("#discount_value").html(response.discount);
                 }
             }
         });
