@@ -343,7 +343,7 @@
             }
         });
     });
-
+    //apply discount
     $("#apply-discount").click(function () {
 
         $.ajax({
