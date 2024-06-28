@@ -493,5 +493,11 @@ class CartController extends Controller
         return $this->getOrderSummery($request);
     }
 
+    public function removeCoupon(Request $request)
+    {
+        session()->forget('code');
+        return $this->getOrderSummery($request);
+    }
+
 
 }

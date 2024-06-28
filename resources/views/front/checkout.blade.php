@@ -182,10 +182,10 @@
                     </div>
 
                     @if (Session::has('code'))
-                    <div class="input-group mt-4">
-                        <strong>{{Session::get('code')->code}}</strong>
-                        <a class="btn btn-sm btn-danger"><i class="fa fa-times"></i></a>
-                    </div>
+                        <div class=" mt-4">
+                            <strong>{{Session::get('code')->code}}</strong>
+                            <a class="btn btn-sm btn-danger" id="remove-discount"><i class="fa fa-times"></i></a>
+                        </div>
                     @endif
 
                     <div class="card payment-form ">
@@ -352,6 +352,26 @@
     });
     //apply discount
     $("#apply-discount").click(function () {
+
+        $.ajax({
+            url: '{{route("front.applyDiscount")}}',
+            type: 'POST',
+            data: {
+                code: $("#discount_code").val(),
+                country_id: $("#country").val()  // Corrected this line
+            },
+            dataType: 'json',
+            success: function (response) {
+
+                if (response.status == true) {
+                    $("#shippingAmount").html(response.shippingCharge);
+                    $("#grandTotal").html(response.grandTotal);
+                    $("#discount_value").html(response.discount);
+                }
+            }
+        });
+    });
+    $("#remove-discount").click(function () {
 
         $.ajax({
             url: '{{route("front.applyDiscount")}}',
