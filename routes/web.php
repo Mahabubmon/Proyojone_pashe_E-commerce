@@ -48,6 +48,7 @@ Route::post('/process-checkout', [CartController::class, 'processCheckout'])->na
 Route::get('/thanks/{orderId}', [CartController::class, 'thankyou'])->name('front.thankyou');
 Route::post('/get-order-summery', [CartController::class, 'git config pull.rebase false '])->name('front.getOrderSummery');
 Route::post('/apply-discount', [CartController::class, 'applyDiscount'])->name('front.applyDiscount');
+Route::post('/remove-discount', [CartController::class, 'removeCoupon'])->name('front.removeCoupon');
 
 
 

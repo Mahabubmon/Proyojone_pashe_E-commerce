@@ -374,10 +374,9 @@
     $("#remove-discount").click(function () {
 
         $.ajax({
-            url: '{{route("front.applyDiscount")}}',
+            url: '{{route("front.removeCoupon")}}',
             type: 'POST',
             data: {
-                code: $("#discount_code").val(),
                 country_id: $("#country").val()  // Corrected this line
             },
             dataType: 'json',
