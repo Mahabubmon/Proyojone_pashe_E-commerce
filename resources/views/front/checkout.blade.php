@@ -182,7 +182,7 @@
                     </div>
 
                     @if (Session::has('code'))
-                        <div class=" mt-4">
+                        <div class=" mt-4" id="discount-response">
                             <strong>{{Session::get('code')->code}}</strong>
                             <a class="btn btn-sm btn-danger" id="remove-discount"><i class="fa fa-times"></i></a>
                         </div>
@@ -386,6 +386,7 @@
                     $("#shippingAmount").html(response.shippingCharge);
                     $("#grandTotal").html(response.grandTotal);
                     $("#discount_value").html(response.discount);
+                    $("#discount-response").html("")
                 }
             }
         });
