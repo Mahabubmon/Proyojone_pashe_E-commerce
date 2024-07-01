@@ -181,12 +181,15 @@
                         <button class="btn btn-dark" type="button" id="apply-discount">Apply Coupon</button>
                     </div>
 
-                    @if (Session::has('code'))
-                        <div class=" mt-4" id="discount-response">
-                            <strong>{{Session::get('code')->code}}</strong>
-                            <a class="btn btn-sm btn-danger" id="remove-discount"><i class="fa fa-times"></i></a>
-                        </div>
-                    @endif
+                    <div id="discount-response-wrapper">
+
+                        @if (Session::has('code'))
+                            <div class=" mt-4" id="discount-response">
+                                <strong>{{Session::get('code')->code}}</strong>
+                                <a class="btn btn-sm btn-danger" id="remove-discount"><i class="fa fa-times"></i></a>
+                            </div>
+                        @endif
+                    </div>
 
                     <div class="card payment-form ">
                         <h3 class="card-title h5 mb-3">Payment Method</h3>
@@ -367,12 +370,15 @@
                     $("#shippingAmount").html(response.shippingCharge);
                     $("#grandTotal").html(response.grandTotal);
                     $("#discount_value").html(response.discount);
+                    $("#discount-response-wrapper").html(response.discountString);
+
                 }
             }
         });
     });
-    $("#remove-discount").click(function () {
 
+
+    $('body').on('click', "#remove-discount", function () {
         $.ajax({
             url: '{{route("front.removeCoupon")}}',
             type: 'POST',
@@ -386,11 +392,16 @@
                     $("#shippingAmount").html(response.shippingCharge);
                     $("#grandTotal").html(response.grandTotal);
                     $("#discount_value").html(response.discount);
-                    $("#discount-response").html("")
+                    $("#discount-response").html('');
+                    $("#discount_code").val('');
                 }
             }
         });
-    });
+    })
+
+    // $("#remove-discount").click(function () {
+
+    // });
 </script>
 
 @endsection

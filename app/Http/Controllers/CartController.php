@@ -300,9 +300,37 @@ class CartController extends Controller
         if ($request->payment_method == 'cod') {
 
             //calculate shipping
+
+
+            $discountCodeId = '';
+            $promoCode = '';
             $shipping = 0;
             $discount = 0;
             $subTotal = Cart::subtotal(2, '.', '');
+
+
+            //apply discount here
+            if (session()->has('code')) {
+                $code = session()->get('code');
+                if ($code->type == 'percent') {
+                    $discount = ($code->discount_amount / 100) * $subTotal;
+                } else {
+                    $discount = $code->discount_amount;
+                }
+
+                $discountCodeId = $code->id;
+                $promoCode = $code->code;
+
+            }
+
+
+
+
+
+
+
+
+
             $grandTotal = $subTotal + $shipping;
             $shippingInfo = ShippingCharge::where('country_id', $request->country)->first();
 
@@ -315,21 +343,29 @@ class CartController extends Controller
 
             if ($shippingInfo != null) {
                 $shipping = $totalQty * $shippingInfo->amount;
-                $grandTotal = $subTotal + $shipping;
+                $grandTotal = ($subTotal - $discount) + $shipping;
 
             } else {
                 $shippingInfo = ShippingCharge::where('country_id', 'rest_of_world')->first();
                 $shipping = $totalQty * $shippingInfo->amount;
-                $grandTotal = $subTotal + $shipping;
+                $grandTotal = ($subTotal - $discount) + $shipping;
+
 
 
             }
+
+
+
+
 
             $order = new Order;
 
             $order->subtotal = $subTotal;
             $order->shipping = $shipping;
             $order->grand_total = $grandTotal;
+            $order->discount = $discount;
+            $order->coupon_code_id = $discountCodeId;
+            $order->coupon_code = $promoCode;
             $order->user_id = $user->id;
 
 
@@ -367,6 +403,9 @@ class CartController extends Controller
 
 
             Cart::destroy();
+
+            session()->forget('code');
+
             return response()->json([
                 'message' => 'Order saved successfully.',
                 'orderId' => $order->id,
