@@ -404,6 +404,7 @@ class CartController extends Controller
 
             Cart::destroy();
 
+            //forget the code that given into the discount add
             session()->forget('code');
 
             return response()->json([
