@@ -398,7 +398,7 @@ class CartController extends Controller
                 $orderItem->total = $item->total;
                 $orderItem->save();
             }
-
+            //session for getting the message on action
             session()->flash('success', 'You Have successfully placed your order.');
 
 
