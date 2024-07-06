@@ -403,9 +403,7 @@
         });
     })
 
-    // $("#remove-discount").click(function () {
 
-    // });
 </script>
 
 @endsection

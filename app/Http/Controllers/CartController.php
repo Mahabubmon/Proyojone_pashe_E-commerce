@@ -541,6 +541,14 @@ class CartController extends Controller
                 ]);
             }
         }
+
+
+        $couponUsed = Order::where('coupon_code_id', $code->id)->count();
+
+        if ($couponUsed >= $code->max_uses) {
+
+        }
+
         session()->put('code', $code);
         return $this->getOrderSummery($request);
     }
