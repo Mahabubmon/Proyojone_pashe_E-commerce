@@ -324,13 +324,6 @@ class CartController extends Controller
             }
 
 
-
-
-
-
-
-
-
             $grandTotal = $subTotal + $shipping;
             $shippingInfo = ShippingCharge::where('country_id', $request->country)->first();
 
@@ -473,7 +466,7 @@ class CartController extends Controller
                 return response()->json([
                     'status' => true,
                     'grandTotal' => number_format($grandTotal, 2),
-                    'discount' => $discount,
+                    'discount' => number_format($discount,2),
                     'discountString' => $discountString,
                     'shippingCharge' => number_format($shippingCharge),
 
@@ -486,7 +479,7 @@ class CartController extends Controller
                 return response()->json([
                     'status' => true,
                     'grandTotal' => number_format($grandTotal, 2),
-                    'discount' => $discount,
+                    'discount' => number_format($discount,2),
                     'discountString' => $discountString,
                     'shippingCharge' => number_format($shippingCharge)
 
@@ -497,7 +490,7 @@ class CartController extends Controller
             return response()->json([
                 'status' => true,
                 'grandTotal' => number_format(($subTotal - $discount), 2),
-                'discount' => $discount,
+                'discount' => number_format($discount,2),
                 'discountString' => $discountString,
                 'shippingCharge' => number_format(0, 2)
 
@@ -543,28 +536,46 @@ class CartController extends Controller
         }
 
         // max uses check
-        $couponUsed = Order::where('coupon_code_id', $code->id)->count();
+        if ($code->max_uses > 0) {
+            $couponUsed = Order::where('coupon_code_id', $code->id)->count();
 
-        if ($couponUsed >= $code->max_uses) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid discount coupon',
-            ]);
+            if ($couponUsed >= $code->max_uses) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid discount coupon',
+                ]);
+            }
         }
+
+
+
+
 
 
         //max uses user check 
-        $couponUsed = Order::where(['coupon_code_id', $code->id, 'user-id' => Auth::user()->id])->count();
+        if ($code->max_uses_user > 0) {
+            $couponUsedByUser = Order::where(['coupon_code_id', $code->id, 'user-id' => Auth::user()->id])->count();
 
-        if ($couponUsed >= $code->max_uses) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Invalid discount coupon',
-            ]);
+            if ($couponUsedByUser >= $code->max_uses_user) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You already used this coupon.',
+                ]);
+            }
+
         }
 
+        $subTotal = Cart::subtotal(2, '.', '');
 
-
+        //Min amount condition check
+        if($code->min_amount > 0){
+            if($subTotal < $code->min_amount){
+                return response()->json([
+                    'status' => false,
+                    'message' =>'You min amount must be'. $code->min_amount.'.',
+                ]);
+            }
+        }
 
         session()->put('code', $code);
         return $this->getOrderSummery($request);
