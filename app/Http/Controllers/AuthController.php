@@ -98,4 +98,9 @@ class AuthController extends Controller
 
 
     }
+
+    public function orders(){
+        return view('front.account.order');
+    }
+
 }
