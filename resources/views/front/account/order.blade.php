@@ -5,8 +5,9 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">My Account</a></li>
-                <li class="breadcrumb-item">Settings</li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{route('account.profile')}}">My Account</a>
+                </li>
+                <li class="breadcrumb-item">My Orders</li>
             </ol>
         </div>
     </div>
@@ -22,10 +23,46 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="h5 mb-0 pt-2 pb-2">Personal Information</h2>
+                        <h2 class="h5 mb-0 pt-2 pb-2">My Orders</h2>
                     </div>
                     <div class="card-body p-4">
-                        
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Orders #</th>
+                                        <th>Date Purchased</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if($orders->isNotEmpty())
+                                        @foreach ($orders as $order)
+                                            <tr>
+                                                <td>
+                                                    <a href="order-detail.php">{{$order->id}}</a>
+                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y')}}</td>
+                                                <td>
+                                                    <span class="badge bg-success">Delivered</span>
+
+                                                </td>
+                                                <td>${{number_format($order->grand_total,2)}}</td>
+                                            </tr>
+                                        @endforeach
+
+                                        @else
+
+                                        <tr>
+                                            <td colspan="3">Orders not found</td>
+                                        </tr>
+                                    @endif
+
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
