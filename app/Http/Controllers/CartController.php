@@ -578,7 +578,7 @@ class CartController extends Controller
                 ]);
             }
         }
-
+        //get session 
         session()->put('code', $code);
         return $this->getOrderSummery($request);
     }
