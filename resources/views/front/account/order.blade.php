@@ -45,14 +45,21 @@
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d M, Y')}}</td>
                                                 <td>
-                                                    <span class="badge bg-success">Delivered</span>
+                                                    @if ($order->status == 'pending')
+                                                        <span class="badge bg-danger">Pending</span>
+
+                                                    @elseif($order->status == 'shipped')
+                                                        <span class="badge bg-info">Shipped</span>
+                                                    @else
+                                                        <span class="badge bg-success">Delivered</span>
+                                                    @endif
 
                                                 </td>
-                                                <td>${{number_format($order->grand_total,2)}}</td>
+                                                <td>${{number_format($order->grand_total, 2)}}</td>
                                             </tr>
                                         @endforeach
 
-                                        @else
+                                    @else
 
                                         <tr>
                                             <td colspan="3">Orders not found</td>
