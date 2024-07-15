@@ -113,6 +113,7 @@ class AuthController extends Controller
 
     public function orderDetail($id)
     {
+        //getting order details
         $data = [];
         $order = Order::where('user_id', $user->id)->where('id',$id)->first();
         $data['order'] = $order;
