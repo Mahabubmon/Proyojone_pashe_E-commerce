@@ -302,7 +302,7 @@ class CartController extends Controller
             //calculate shipping
 
 
-            $discountCodeId = '';
+            $discountCodeId = NULL;
             $promoCode = '';
             $shipping = 0;
             $discount = 0;
