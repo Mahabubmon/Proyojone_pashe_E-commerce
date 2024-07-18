@@ -101,8 +101,7 @@
                                                                         <img class="img-fluid"
                                                                             src="{{asset('uploads/product/small/' . $productImage->image)}}">
                                                                     @else
-                                                                        <img class="img-fluid" src="{{asset('admin-assets/img/no-image.png')}}"
-                                                                            alt="">
+                                                                        <img class="img-fluid" src="{{asset('admin-assets/img/no-image.png')}}" alt="">
                                                                     @endif
                                                                 </div>
                                                                 <div class="col">
@@ -130,19 +129,19 @@
                         <ul>
                             <li class="list-group-item d-flex">
                                 <span>Subtotal</span>
-                                <span class="ms-auto">${{number_format($order->subtotal,2)}}</span>
+                                <span class="ms-auto">${{number_format($order->subtotal, 2)}}</span>
                             </li>
                             <li class="list-group-item d-flex">
-                                <span>Discount{{(!empty($order->discount)) ? '('.$order->coupon_code.')' : ''}}</span>
-                                <span class="ms-auto">${{number_format($order->discount,2)}}</span>
+                                <span>Discount{{(!empty($order->discount)) ? '(' . $order->coupon_code . ')' : ''}}</span>
+                                <span class="ms-auto">${{number_format($order->discount, 2)}}</span>
                             </li>
                             <li class="list-group-item d-flex">
                                 <span>Shipping</span>
-                                <span class="ms-auto">${{number_format($order->shipping,2)}}</span>
+                                <span class="ms-auto">${{number_format($order->shipping, 2)}}</span>
                             </li>
                             <li class="list-group-item d-flex fs-lg fw-bold">
                                 <span>Grand Total</span>
-                                <span class="ms-auto">${{number_format($order->grand_total,2)}}</span>
+                                <span class="ms-auto">${{number_format($order->grand_total, 2)}}</span>
                             </li>
                         </ul>
                     </div>
