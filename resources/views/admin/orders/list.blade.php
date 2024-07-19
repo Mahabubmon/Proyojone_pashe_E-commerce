@@ -1,6 +1,7 @@
 @extends('front.layouts.app')
 
 @section('content')
+<!-- section to show the list of order -->
 
 
 @endsection
