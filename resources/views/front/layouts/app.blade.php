@@ -86,7 +86,7 @@
     <header class="bg-dark">
         <div class="container">
             <nav class="navbar navbar-expand-xl" id="navbar">
-                <a href="index.php" class="text-decoration-none mobile-logo">
+                <a href="{{route("front.home")}}" class="text-decoration-none mobile-logo">
                     <span class="h2 text-uppercase text-primary bg-dark">Proyojone</span>
                     <span class="h2 text-uppercase text-white px-2">Pashe</span>
                 </a>
@@ -152,8 +152,8 @@
                     <div class="footer-card">
                         <h3>Important Links</h3>
                         <ul>
-                            <li><a href="about-us.php" title="About">About</a></li>
-                            <li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>
+                            <li><a href="#" title="About">About</a></li>
+                            <li><a href="#" title="Contact Us">Contact Us</a></li>
                             <li><a href="#" title="Privacy">Privacy</a></li>
                             <li><a href="#" title="Privacy">Terms & Conditions</a></li>
                             <li><a href="#" title="Privacy">Refund Policy</a></li>
