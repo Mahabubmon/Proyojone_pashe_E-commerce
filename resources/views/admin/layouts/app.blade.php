@@ -77,12 +77,20 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2022-<span id="currentYear"></span> Rahman Group Ltd. All rights reserved.</strong>
+            <!-- <strong>Copyright &copy; 2022-<span id="currentYear"></span> Rahman Group Ltd. All rights reserved.</strong> -->
+            <strong>Copyright &copy; <span id="startYear"></span>-<span id="currentYear"></span> Rahman Group Ltd. All
+                rights reserved.</strong>
         </footer>
 
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
+    <script>
+        const startYear = 2022;
+        const currentYear = new Date().getFullYear();
+        document.getElementById('startYear').textContent = startYear;
+        document.getElementById('currentYear').textContent = currentYear;
+    </script>
     <script src="{{asset('admin-assets')}}/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="{{asset('admin-assets')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
