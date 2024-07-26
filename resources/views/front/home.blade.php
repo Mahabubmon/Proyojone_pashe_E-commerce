@@ -155,7 +155,7 @@
 
 
                                             <!-- <img class="card-img-top" src="{{asset('front-assets')}}/images/product-1.jpg"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt=""> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt=""> -->
                                             @if (!empty($productImage->image))
 
                                                 <img class="card-img-top" src="{{asset('uploads/product/small/' . $productImage->image)}}">
@@ -210,8 +210,7 @@
                                         <a href="{{route("front.product", $product->slug)}}" class="product-img">
 
 
-                                            <!-- <img class="card-img-top" src="{{asset('front-assets')}}/images/product-1.jpg"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        alt=""> -->
+
                                             @if (!empty($productImage->image))
 
                                                 <img class="card-img-top" src="{{asset('uploads/product/small/' . $productImage->image)}}">
