@@ -54,14 +54,14 @@
                     </thead>
                     <tbody>
 
-                        @if ($categories->isNotEmpty())
-                            @foreach ($categories as $category)
+                        @if ($orders->isNotEmpty())
+                            @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{$category->id}}</td>
-                                    <td>{{$category->name}}</td>
-                                    <td>{{$category->slug}}</td>
+                                    <td>{{$order->id}}</td>
+                                    <td>{{$order->name}}</td>
+                                    <td>{{$order->slug}}</td>
                                     <td>
-                                        @if($category->status == 1)
+                                        @if($order->status == 1)
                                             <svg class="text-success-500 h-6 w-6 text-success" xmlns="http://www.w3.org/2000/svg"
                                                 fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                 aria-hidden="true">
@@ -77,7 +77,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{route('categories.edit', $category->id)}}">
+                                        <a href="{{route('categories.edit', $order->id)}}">
                                             <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path
@@ -85,8 +85,7 @@
                                                 </path>
                                             </svg>
                                         </a>
-                                        <a href="#" onclick="deleteCategory({{$category->id}})"
-                                            class="text-danger w-4 h-4 mr-1">
+                                        <a href="#" onclick="deleteorder({{$order->id}})" class="text-danger w-4 h-4 mr-1">
                                             <svg wire:loading.remove.delay="" wire:target=""
                                                 class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
