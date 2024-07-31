@@ -11,7 +11,7 @@ class OrderController extends Controller
     //
     public function index(Request $request)
     {
-        $orders = Order::latest();
+        $orders = Order::latest('orders.created_at');
         $orders = $orders->leftJoin('users', 'users.id', 'orders.user_id');
 
         if ($request->get('keyword') != "") {
