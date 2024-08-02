@@ -98,8 +98,6 @@
 @endsection
 
 @section('customsJs')
-
-
 <script>
     $("#categoryForm").submit(function (event) {
         event.preventDefault();

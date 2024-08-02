@@ -153,7 +153,6 @@
                                     <div class="product-image position-relative">
                                         <a href="{{route("front.product", $product->slug)}}" class="product-img">
 
-
                                             @if (!empty($productImage->image))
 
                                                 <img class="card-img-top" src="{{asset('uploads/product/small/' . $productImage->image)}}">
