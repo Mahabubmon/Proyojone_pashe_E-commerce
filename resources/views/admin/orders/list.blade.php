@@ -49,8 +49,9 @@
                             <th>Customer</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th width="100">Status</th>
-                            <th width="100">Action</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Date Purchased</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,12 @@
                                             <span class="badge bg-success">Delivered</span>
 
                                         @endif
+                                    </td>
+                                    <td>
+                                        ${{ nuumber_format($order->grand_total, 2)}}
+                                    </td>
+                                    <td>
+                                        {{\Carbon\Carbon::parse($order->created_at)->format('d M, Y')}}
                                     </td>
 
                                 </tr>

@@ -11,7 +11,7 @@ class OrderController extends Controller
     //
     public function index(Request $request)
     {
-        $orders = Order::latest('orders.created_at')->select('orders.*','users.name','users.email');
+        $orders = Order::latest('orders.created_at')->select('orders.*', 'users.name', 'users.email');
         $orders = $orders->leftJoin('users', 'users.id', 'orders.user_id');
 
         if ($request->get('keyword') != "") {
@@ -22,9 +22,9 @@ class OrderController extends Controller
 
         $orders = $orders->paginate(10);
 
-        $data['orders'] = $orders;
-
-        return view('admin.orders.list', $data);
+        return view('admin.orders.list', [
+            'orders' => $orders
+        ]);
     }
 
     public function detail()
