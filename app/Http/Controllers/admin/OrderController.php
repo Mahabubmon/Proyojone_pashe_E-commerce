@@ -27,8 +27,11 @@ class OrderController extends Controller
         ]);
     }
 
-    public function detail()
+    public function detail($orderId)
     {
-
+        $order = Order::where('id', $orderId)->first();
+        return view('admin.orders.detail', [
+            'order' => $order
+        ]);
     }
 }
