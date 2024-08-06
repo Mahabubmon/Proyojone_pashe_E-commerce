@@ -29,20 +29,25 @@
                                 <address>
                                     <strong>{{$order->first_name . '' . $order->last_name}}</strong><br>
                                     {{$order->address}}<br>
-                                    {{$order->city}}, {{$order->zip}}<br>
+                                    {{$order->city}}, {{$order->zip}} {{$order->countryName}}<br>
                                     Phone: {{$order->mobile}}<br>
                                     Email: {{$order->email}}
                                 </address>
                             </div>
-
-
-
                             <div class="col-sm-4 invoice-col">
-                                <b>Invoice #007612</b><br>
+                                <!-- <b>Invoice #007612</b><br> -->
                                 <br>
                                 <b>Order ID:</b> 4F3S8J<br>
                                 <b>Total:</b> $90.40<br>
-                                <b>Status:</b> <span class="text-success">Delivered</span>
+                                <b>Status:</b>
+                                @if ($order->$status == 'Pending')
+                                    <span class="text-danger">Pending</span>
+                                @elseif($order->$status == 'Shipped')
+                                    <span class="text-info">Shipped</span>
+                                @else
+                                    <span class="text-success">Delivered</span>
+
+                                @endif
                                 <br>
                             </div>
                         </div>
