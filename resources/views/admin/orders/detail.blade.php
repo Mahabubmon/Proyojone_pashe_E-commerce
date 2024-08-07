@@ -37,8 +37,8 @@
                             <div class="col-sm-4 invoice-col">
                                 <!-- <b>Invoice #007612</b><br> -->
                                 <br>
-                                <b>Order ID:</b> 4F3S8J<br>
-                                <b>Total:</b> $90.40<br>
+                                <b>Order ID:</b> {{$order->id}}<br>
+                                <b>Total:</b> ${{number_format($order->grand_total, 2)}}<br>
                                 <b>Status:</b>
                                 @if ($order->$status == 'Pending')
                                     <span class="text-danger">Pending</span>
