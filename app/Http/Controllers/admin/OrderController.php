@@ -36,11 +36,11 @@ class OrderController extends Controller
             ->first();
 
 
-        $orderItem = OrderItem::where('order_id', $orderId)->get();
+        $orderItems = OrderItem::where('order_id', $orderId)->get();
 
         return view('admin.orders.detail', [
             'order' => $order,
-            'orderItem' => $orderItem
+            'orderItems' => $orderItems
         ]);
     }
 }

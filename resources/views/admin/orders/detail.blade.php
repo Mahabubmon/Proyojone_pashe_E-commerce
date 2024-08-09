@@ -63,30 +63,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Call of Duty</td>
-                                    <td>$10.00</td>
-                                    <td>2</td>
-                                    <td>$20.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Call of Duty</td>
-                                    <td>$10.00</td>
-                                    <td>2</td>
-                                    <td>$20.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Call of Duty</td>
-                                    <td>$10.00</td>
-                                    <td>2</td>
-                                    <td>$20.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Call of Duty</td>
-                                    <td>$10.00</td>
-                                    <td>2</td>
-                                    <td>$20.00</td>
-                                </tr>
+                                @foreach ($orderItems as $item)
+                                    <tr>
+                                        <td>{{$item->name}}</td>
+                                        <td>${{$item->price}}</td>
+                                        <td>{{$item->qty}}</td>
+                                        <td>${{$item->total}}</td>
+                                    </tr>
+
+                                @endforeach
                                 <tr>
                                     <th colspan="3" class="text-right">Subtotal:</th>
                                     <td>$80.00</td>
