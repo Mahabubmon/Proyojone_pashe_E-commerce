@@ -103,10 +103,14 @@
                         <h2 class="h4 mb-3">Order Status</h2>
                         <div class="mb-3">
                             <select name="status" id="status" class="form-control">
-                                <option value="pending"{{($order->status == 'pending') ? 'selected' ? ''}}>Pending</option>
-                                <option value="shipped"{{($order->status == 'shipped') ? 'selected' ? ''}>Shipped</option>
-                                <option value="delivered"{{($order->status == 'delivered') ? 'selected' ? ''}>Delivered</option>
-                                <!-- <option value="">Cancelled</option> -->
+                                <option value="pending" {{($order->status == 'pending') ? 'selected' : ''}}>Pending
+                                </option>
+                                <option value="shipped" {{($order->status == 'shipped') ? 'selected' : ''}}>Shipped
+                                </option>
+                                <option value="delivered" {{($order->status == 'delivered') ? 'selected' : ''}}>Delivered
+                                </option>
+                                <option value="cancelled" {{($order->status == 'cancelled') ? 'selected' : ''}}>Cancelled
+                                </option>
                             </select>
                         </div>
                         <div class="mb-3">
