@@ -114,6 +114,9 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <input type="text" name="shipped_date" id="shipped_date" class="form-control">
+                        </div>
+                        <div class="mb-3">
                             <button class="btn btn-primary">Update</button>
                         </div>
                     </div>
