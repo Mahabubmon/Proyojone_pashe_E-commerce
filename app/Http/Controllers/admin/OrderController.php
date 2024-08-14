@@ -43,4 +43,10 @@ class OrderController extends Controller
             'orderItems' => $orderItems
         ]);
     }
+
+
+    public function changeOrderStatus(Request $request)
+    {
+
+    }
 }

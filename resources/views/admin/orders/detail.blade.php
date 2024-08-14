@@ -162,6 +162,21 @@
         });
     });
 
+
+    $("#changeOrderStatusForm").submit(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: '{{route("orders.changeOrderStatus", $order->id)}}';
+            type: 'post';
+            data: $(this).serializeArray(),
+            dataType: 'json',
+            success: function (response) {
+
+            }
+        });
+    });
+
 </script>
 
 @endsection
