@@ -21,6 +21,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
+                @include('admin.message')
                 <div class="card">
                     <div class="card-header pt-3">
                         <div class="row invoice-info">
@@ -172,7 +173,7 @@
             data: $(this).serializeArray(),
             dataType: 'json',
             success: function (response) {
-
+                window.location.href = '{{route("orders.detail", $order->id)}}';
             }
         });
     });
