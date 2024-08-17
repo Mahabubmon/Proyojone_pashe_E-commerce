@@ -119,7 +119,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Shipped Date</label>
-                                <input type="text" name="shipped_date" id="shipped_date" class="form-control">
+                                <input value="{{$order->shipped_date}}" type="text" name="shipped_date"
+                                    id="shipped_date" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <button class="btn btn-primary">Update</button>

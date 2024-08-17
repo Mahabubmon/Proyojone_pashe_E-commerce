@@ -54,7 +54,7 @@ class OrderController extends Controller
 
         $message = 'Order status updated successfully';
 
-        session()->flash('status', $message);
+        session()->flash('success', $message);
 
         return response()->json([
             'status' => true,
