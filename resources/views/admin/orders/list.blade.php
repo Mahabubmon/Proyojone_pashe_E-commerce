@@ -64,12 +64,14 @@
                                     <td>{{$order->email}}</td>
                                     <td>{{$order->mobile}}</td>
                                     <td>
-                                        @if ($order->$status == 'Pending')
+                                        @if ($order->$status == 'pending')
                                             <span class="badge bg-danger">Pending</span>
-                                        @elseif($order->$status == 'Shipped')
+                                        @elseif($order->$status == 'shipped')
                                             <span class="badge bg-info">Shipped</span>
+                                        @elseif($order->$status == 'delivered')
+                                            <span class="text-success">Delivered</span>
                                         @else
-                                            <span class="badge bg-success">Delivered</span>
+                                            <span class="text-danger">Cancelled</span>
 
                                         @endif
                                     </td>

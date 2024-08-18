@@ -33,7 +33,14 @@
                                     {{$order->city}}, {{$order->zip}} {{$order->countryName}}<br>
                                     Phone: {{$order->mobile}}<br>
                                     Email: {{$order->email}}
-                                </address>
+                                </address><br>
+                                <strong>
+                                    @if (!empty($order->shipped_date))
+                                        {{\Carbon\Carbon::parse($order->shipped_date)->format('d M')}}
+                                    @else
+                                        n/a
+                                    @endif
+                                </strong>
                             </div>
                             <div class="col-sm-4 invoice-col">
                                 <!-- <b>Invoice #007612</b><br> -->
@@ -41,12 +48,14 @@
                                 <b>Order ID:</b> {{$order->id}}<br>
                                 <b>Total:</b> ${{number_format($order->grand_total, 2)}}<br>
                                 <b>Status:</b>
-                                @if ($order->$status == 'Pending')
+                                @if ($order->$status == 'pending')
                                     <span class="text-danger">Pending</span>
-                                @elseif($order->$status == 'Shipped')
+                                @elseif($order->$status == 'shipped')
                                     <span class="text-info">Shipped</span>
-                                @else
+                                @elseif($order->$status == 'delivered')
                                     <span class="text-success">Delivered</span>
+                                @else
+                                    <span class="text-danger">Cancelled</span>
 
                                 @endif
                                 <br>
@@ -119,8 +128,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Shipped Date</label>
-                                <input value="{{$order->shipped_date}}" type="text" name="shipped_date"
-                                    id="shipped_date" class="form-control">
+                                <input placeholder="Shipped Date" value="{{$order->shipped_date}}" type="text"
+                                    name="shipped_date" id="shipped_date" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <button class="btn btn-primary">Update</button>
