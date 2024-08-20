@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\ProductImage;
 
 function getCategories()
@@ -13,7 +14,16 @@ function getCategories()
         ->get();
 }
 
-function getProductImage($productId){
-    ProductImage::where('product_id',$productId)->first();
+function getProductImage($productId)
+{
+    return ProductImage::where('product_id', $productId)->first();
+}
+
+
+function OrderEmail($orderId)
+{
+    $order = Order::where('id', $orderId)
+        ->with('items')
+        ->first();
 }
 ?>
