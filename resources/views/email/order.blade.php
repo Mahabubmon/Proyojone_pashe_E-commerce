@@ -11,6 +11,14 @@
 
     <h1>Thanks for your order!!</h1>
     <h2>You order Id Is: #{{$mailData['order']->id}}</h2>
+    <h2>Shipping Address</h2>
+    <address>
+        <strong>{{$mailData['order']->first_name . '' . $mailData['order']->last_name}}</strong><br>
+        {{$mailData['order']->address}}<br>
+        {{$mailData['order']->city}}, {{$mailData['order']->zip}} {{$mailData['order']->countryName}}<br>
+        Phone: {{$mailData['order']->mobile}}<br>
+        Email: {{$mailData['order']->email}}
+    </address>
 
 
 

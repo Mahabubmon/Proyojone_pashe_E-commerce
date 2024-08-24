@@ -33,14 +33,13 @@
                                     {{$order->city}}, {{$order->zip}} {{$order->countryName}}<br>
                                     Phone: {{$order->mobile}}<br>
                                     Email: {{$order->email}}
-                                </address><br>
-                                <strong>
+                                </address>
+                                </strong>Shipped Date <strong><br>
                                     @if (!empty($order->shipped_date))
                                         {{\Carbon\Carbon::parse($order->shipped_date)->format('d M')}}
                                     @else
                                         n/a
                                     @endif
-                                </strong>
                             </div>
                             <div class="col-sm-4 invoice-col">
                                 <!-- <b>Invoice #007612</b><br> -->
