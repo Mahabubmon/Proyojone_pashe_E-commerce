@@ -15,7 +15,8 @@
     <address>
         <strong>{{$mailData['order']->first_name . '' . $mailData['order']->last_name}}</strong><br>
         {{$mailData['order']->address}}<br>
-        {{$mailData['order']->city}}, {{$mailData['order']->zip}} {{$mailData['order']->countryName}}<br>
+        {{$mailData['order']->city}}, {{$mailData['order']->zip}}
+        {{$getCountryInfo($mailData['order']->country_id)->name}}<br>
         Phone: {{$mailData['order']->mobile}}<br>
         Email: {{$mailData['order']->email}}
     </address>
@@ -24,7 +25,7 @@
 
     <h2>Products</h2>
 
-    <table cellpadding="'3" cellspacing="3" border="0">
+    <table cellpadding="'3" cellspacing="3" border="0" width="100">
         <thead>
             <tr>
                 <th>Product</th>

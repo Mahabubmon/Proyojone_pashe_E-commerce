@@ -2,6 +2,7 @@
 
 use App\Mail\OrderEmail;
 use App\Models\Category;
+use App\Models\Country;
 use App\Models\Order;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Mail;
@@ -36,5 +37,10 @@ function OrderEmail($orderId)
 
 
     Mail::to($order->emmail)->send(new OrderEmail());
+}
+
+function getCountryInfo($id)
+{
+    Country::where('id', $id)->first();
 }
 ?>
