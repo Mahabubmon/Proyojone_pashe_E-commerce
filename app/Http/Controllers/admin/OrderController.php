@@ -61,4 +61,9 @@ class OrderController extends Controller
             'message' => $message
         ]);
     }
+
+    public function sendInvoiceEmail(Request $request, $orderId)
+    {
+
+    }
 }
