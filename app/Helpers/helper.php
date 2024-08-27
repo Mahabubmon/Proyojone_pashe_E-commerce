@@ -23,20 +23,28 @@ function getProductImage($productId)
 }
 
 
-function OrderEmail($orderId)
+function OrderEmail($orderId, $userType = "customer")
 {
     $order = Order::where('id', $orderId)
         ->with('items')
         ->first();
 
+    if ($userType == 'customer') {
+        $subject = 'Thans for your order';
+    } else {
+        $subject = 'You have received an order';
+
+    }
+
     $mailData = [
 
-        'subject' => 'Thanks for Your order',
-        'order' => $order
+        'subject' => $subject,
+        'order' => $order,
+        'userType' => $userType
     ];
 
 
-    Mail::to($order->emmail)->send(new OrderEmail());
+    Mail::to($order->emmail)->send(new OrderEmail($mailData));
 }
 
 function getCountryInfo($id)
