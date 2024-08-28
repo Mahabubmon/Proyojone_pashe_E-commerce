@@ -31,8 +31,11 @@ function OrderEmail($orderId, $userType = "customer")
 
     if ($userType == 'customer') {
         $subject = 'Thans for your order';
+        $email = $order->email;
     } else {
         $subject = 'You have received an order';
+        $email = env('ADMIN_EMAIL');
+
 
     }
 
@@ -44,7 +47,7 @@ function OrderEmail($orderId, $userType = "customer")
     ];
 
 
-    Mail::to($order->emmail)->send(new OrderEmail($mailData));
+    Mail::to($order->email)->send(new OrderEmail($mailData));
 }
 
 function getCountryInfo($id)
