@@ -396,7 +396,7 @@ class CartController extends Controller
 
 
             //Send Email
-            orderEmail($order->id);
+            orderEmail($order->id, 'customer');
             //session for getting the message on action
             session()->flash('success', 'You Have successfully placed your order.');
 

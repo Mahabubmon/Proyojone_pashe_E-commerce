@@ -192,16 +192,22 @@
     $("#sendInvoiceEmail").submit(function (event) {
         event.preventDefault();
 
-        $.ajax({
-            url: '{{route("orders.sendInvoiceEmail", $order->id)}}';
-            type: 'post';
-            data: $(this).serializeArray(),
-            dataType: 'json',
-            success: function (response) {
-                window.location.href = '{{route("orders.detail", $order->id)}}';
-            }
-        });
+        if (confirm("Are you sure you want to send email?")) {
+
+
+            $.ajax({
+                url: '{{route("orders.sendInvoiceEmail", $order->id)}}';
+                type: 'post';
+                data: $(this).serializeArray(),
+                dataType: 'json',
+                success: function (response) {
+                    window.location.href = '{{route("orders.detail", $order->id)}}';
+                }
+            });
+
+        }
     });
+
 
 </script>
 
