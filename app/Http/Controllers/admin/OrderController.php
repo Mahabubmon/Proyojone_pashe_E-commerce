@@ -66,7 +66,7 @@ class OrderController extends Controller
     {
         OrderEmail($orderId, $request->userType);
 
-
+        // after done the action message that send to watch
         $message = 'Order status updated successfully';
 
         session()->flash('success', $message);
