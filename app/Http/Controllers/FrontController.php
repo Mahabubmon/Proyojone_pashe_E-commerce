@@ -29,4 +29,8 @@ class FrontController extends Controller
 
         return view("front.home", $data);
     }
+    public function addToWishlist(Request $request)
+    {
+
+    }
 }
