@@ -29,6 +29,7 @@ class FrontController extends Controller
 
         return view("front.home", $data);
     }
+    // front wishlist functionality for addwish to cart
     public function addToWishlist(Request $request)
     {
 
