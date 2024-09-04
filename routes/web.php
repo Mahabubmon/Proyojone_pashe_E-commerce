@@ -50,6 +50,7 @@ Route::get('/thanks/{orderId}', [CartController::class, 'thankyou'])->name('fron
 Route::post('/get-order-summery', [CartController::class, 'git config pull.rebase false '])->name('front.getOrderSummery');
 Route::post('/apply-discount', [CartController::class, 'applyDiscount'])->name('front.applyDiscount');
 Route::post('/remove-discount', [CartController::class, 'removeCoupon'])->name('front.removeCoupon');
+Route::post('/add-to-wishlist', [FrontController::class, 'addToWishlist'])->name('front.addToWishlist');
 
 
 

@@ -241,6 +241,26 @@
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+
+
+        function addToWishList(id){
+
+            $.ajax({
+                url: '{{route("front.addToWishlist")}}',
+                type: 'POST',
+                data: { id: id },
+                dataType: 'json',
+                success: function (response) {
+                
+                    if (response.status == true) {
+                        window.location.href = "{{route('front.cart')}}"
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            });
+        }
+
     </script>
 
     @yield('customJs')
