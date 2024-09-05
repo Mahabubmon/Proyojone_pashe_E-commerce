@@ -243,10 +243,10 @@
 
 
 
-        function addToWishList(id){
+        function addToWhishList(id){
 
             $.ajax({
-                url: '{{route("front.addToWishlist")}}',
+                url: '{{route("front.addToWhishList")}}',
                 type: 'POST',
                 data: { id: id },
                 dataType: 'json',

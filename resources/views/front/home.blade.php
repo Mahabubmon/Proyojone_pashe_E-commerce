@@ -162,7 +162,7 @@
 
 
                                         </a>
-                                        <a onclick="addToWishList({{$product->id}})" class="whishlist" href="javascript:void(0)"><i
+                                        <a onclick="addToWhishList({{$product->id}})" class="whishlist" href="javascript:void(0)"><i
                                                 class="far fa-heart"></i></a>
 
                                         <div class="product-action">
@@ -215,7 +215,7 @@
 
 
                                         </a>
-                                        <a onclick="addToWishList({{$product->id}})" class="whishlist" href="javascript:void(0)"><i
+                                        <a onclick="addToWhishList({{$product->id}})" class="whishlist" href="javascript:void(0)"><i
                                                 class="far fa-heart"></i></a>
 
 
