@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
@@ -32,6 +33,10 @@ class FrontController extends Controller
     // front wishlist functionality for addwish to cart
     public function addToWhishList(Request $request)
     {
-
+        if (Auth::check() == false) {
+            return response()->json([
+                'status' => false
+            ]);
+        }
     }
 }

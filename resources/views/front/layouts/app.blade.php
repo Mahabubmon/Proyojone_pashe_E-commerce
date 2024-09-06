@@ -252,11 +252,12 @@
                 dataType: 'json',
                 success: function (response) {
                 
-                    // if (response.status == true) {
-                    //     window.location.href = "{{route('front.cart')}}"
-                    // } else {
-                    //     alert(response.message);
-                    // }
+                    if (response.status == true) {
+                    } else {
+                        window.location.href = "{{route('account.login')}}"
+
+                        // alert(response.message);
+                    }
                 }
             });
         }
