@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,9 +35,21 @@ class FrontController extends Controller
     public function addToWhishList(Request $request)
     {
         if (Auth::check() == false) {
+
+            session(['url.intend' => url()->previous()]);
+
             return response()->json([
                 'status' => false
             ]);
         }
+        $wishlist = new Wishlist();
+        $wishlist->user_id = Auth::user()->id;
+        $wishlist->product_id = $request->id;
+        $wishlist->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Product added in your wishlist'
+        ]);
     }
 }
