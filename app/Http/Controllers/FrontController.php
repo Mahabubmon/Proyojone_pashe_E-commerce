@@ -42,14 +42,23 @@ class FrontController extends Controller
                 'status' => false
             ]);
         }
+        $product = Product::where('id', $request->id)->first();
+
+        if ($product == null) {
+            return response()->json([
+                'status' => true,
+                'message' => '<div class="alert alert-danger">Product not found.</div>'
+            ]);
+        }
         $wishlist = new Wishlist();
         $wishlist->user_id = Auth::user()->id;
         $wishlist->product_id = $request->id;
         $wishlist->save();
 
+
         return response()->json([
             'status' => true,
-            'message' => 'Product added in your wishlist'
+            'message' => '<div class="alert alert-success">"' . $product->title . '" added in your wishlist</div>'
         ]);
     }
 }

@@ -82,6 +82,7 @@
                 rights reserved.</strong>
         </footer>
 
+
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
