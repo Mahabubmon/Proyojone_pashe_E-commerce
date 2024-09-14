@@ -64,11 +64,11 @@
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                @if (Auth::check())
-                <a href="{{route('account.profile')}}" class="nav-link text-dark">My Account</a>
-                @else
-                <a href="{{route('account.login')}}" class="nav-link text-dark">Login/Registration</a>
-                @endif    
+                    @if (Auth::check())
+                        <a href="{{route('account.profile')}}" class="nav-link text-dark">My Account</a>
+                    @else
+                        <a href="{{route('account.login')}}" class="nav-link text-dark">Login/Registration</a>
+                    @endif
                     <form action="">
                         <div class="input-group">
                             <input type="text" placeholder="Search For Products" class="form-control"
@@ -97,7 +97,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                       
+
                         @if(getCategories()->isNotEmpty())
 
                             @foreach (getCategories() as $category)
@@ -110,7 +110,9 @@
                                     @if ($category->sub_category->isNotEmpty())
                                         <ul class="dropdown-menu dropdown-menu-dark">
                                             @foreach ($category->sub_category as $subCategory)
-                                                <li><a class="dropdown-item nav-link" href="{{route('front.shop',[$category->slug,$subCategory->slug])}}">{{$subCategory->name}}</a></li>
+                                                <li><a class="dropdown-item nav-link"
+                                                        href="{{route('front.shop', [$category->slug, $subCategory->slug])}}">{{$subCategory->name}}</a>
+                                                </li>
 
 
 
@@ -178,7 +180,8 @@
                 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="copy-right text-center">
-                        <p>Copyright &copy; 2022-<span id="currentYear"></span> Rahman Group Ltd. All rights reserved.</p>
+                            <p>Copyright &copy; 2022-<span id="currentYear"></span> Rahman Group Ltd. All rights
+                                reserved.</p>
 
                         </div>
                     </div>
@@ -189,30 +192,34 @@
 
 
 
-     <!-- wishlis Modal -->
-     <div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Success</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+    <!-- wishlis Modal -->
+    <div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        aria-label="Close">Close</button>
+
                 </div>
             </div>
         </div>
+    </div>
 
     <script src="{{asset('front-assets')}}/js/jquery-3.6.0.min.js"></script>
     <script src="{{asset('front-assets')}}/js/bootstrap.bundle.5.1.3.min.js"></script>
-    <script src="{{asset('front-assets')}}/js/instantpages.5.1.0.min.js"></script>
+    <!-- <script src="{{asset('front-assets')}}/js/instantpages.5.1.0.min.js"></script> -->
+    <script src="{{asset('front-assets')}}/js/bootstrap.bundle.5.1.3.min.js"></script>
     <script src="{{asset('front-assets')}}/js/lazyload.17.6.0.min.js"></script>
     <script src="{{asset('front-assets')}}/js/slick.min.js"></script>
     <script src="{{asset('front-assets')}}/js/custom.js"></script>
@@ -251,7 +258,7 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (response) {
-                
+
                     if (response.status == true) {
                         window.location.href = "{{route('front.cart')}}"
                     } else {
@@ -260,14 +267,14 @@
                 }
             });
 
-            }
+        }
 
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
 
 
-        function addToWhishList(id){
+        function addToWhishList(id) {
 
             $.ajax({
                 url: '{{route("front.addToWhishList")}}',
@@ -275,9 +282,9 @@
                 data: { id: id },
                 dataType: 'json',
                 success: function (response) {
-                
+
                     if (response.status == true) {
-                        $("#wishlistModal.modal-body").html(response.message);
+                        $("#wishlistModal .modal-body").html(response.message);
                         $("#wishlistModal").modal('show');
                     } else {
                         window.location.href = "{{route('account.login')}}"
