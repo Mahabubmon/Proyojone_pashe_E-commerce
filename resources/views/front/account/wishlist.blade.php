@@ -30,8 +30,17 @@
                             @foreach ($wishlists as $wishlist)
                                 <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
                                     <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a
-                                            class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;"><img
-                                                src="images/product-1.jpg" alt="Product"></a>
+                                            class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;">
+                                            <!-- <img src="images/product-1.jpg" alt="Product"></a> -->
+                                             @php
+                                             $productImage = getProductImage($Wishlist->product_id);
+                                             @endphp
+                                            @if (!empty($productImage))
+
+                                                <img class="card-img-top" src="{{asset('uploads/product/small/' . $productImage->image)}}">
+                                            @else
+                                                <img class="card-img-top" src="{{asset('admin-assets/img/no-image.png')}}" alt="">
+                                            @endif
                                         <div class="pt-2">
                                             <h3 class="product-title fs-base mb-2"><a
                                                     href="shop-single-v1.html">{{$wishlist->product->title}}</a></h3>
