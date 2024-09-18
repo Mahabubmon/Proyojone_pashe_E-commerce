@@ -1,6 +1,5 @@
 @extends('front.layouts.app')
 
-
 @section('content')
 <section class="section-5 pt-3 pb-3 mb-3 bg-white">
     <div class="container">
@@ -18,7 +17,6 @@
         <div class="row">
             <div class="col-md-3">
                 @include('front.account.common.sidebar')
-
             </div>
             <div class="col-md-9">
                 <div class="card">
@@ -27,37 +25,43 @@
                     </div>
                     <div class="card-body p-4">
                         @if ($wishlists->isNotEmpty())
-                            @foreach ($wishlists as $wishlist)
-                                <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
-                                    <div class="d-block d-sm-flex align-items-start text-center text-sm-start"><a
-                                            class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;">
-                                            <!-- <img src="images/product-1.jpg" alt="Product"></a> -->
-                                             @php
-                                             $productImage = getProductImage($Wishlist->product_id);
-                                             @endphp
-                                            @if (!empty($productImage))
+                                            @foreach ($wishlists as $wishlist)
+                                                                <div class="d-sm-flex justify-content-between mt-lg-4 mb-4 pb-3 pb-sm-2 border-bottom">
+                                                                    <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
+                                                                        @php
+                                                                            $productImage = getProductImage($wishlist->product_id); // Fixed variable name
+                                                                        @endphp
+                                                                        <a class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;">
+                                                                            @if (!empty($productImage))
+                                                                                <img src="{{asset('uploads/product/small/' . $productImage->image)}}">
+                                                                            @else
+                                                                                <img src="{{asset('admin-assets/img/no-image.png')}}" alt="">
+                                                                            @endif
+                                                                        </a>
 
-                                                <img class="card-img-top" src="{{asset('uploads/product/small/' . $productImage->image)}}">
-                                            @else
-                                                <img class="card-img-top" src="{{asset('admin-assets/img/no-image.png')}}" alt="">
-                                            @endif
-                                        <div class="pt-2">
-                                            <h3 class="product-title fs-base mb-2"><a
-                                                    href="shop-single-v1.html">{{$wishlist->product->title}}</a></h3>
-                                            <div class="fs-lg text-accent pt-2">
-                                                @if($wishlist->product->compare_price > 0)
-                                                <span class="h6 text-underline"><del>${{$wishlist->product->compare_price}}</del></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                                        <button class="btn btn-outline-danger btn-sm" type="button"><i
-                                                class="fas fa-trash-alt me-2"></i>Remove</button>
-                                    </div>
-                                </div>
-                            @endforeach
+                                                                        <div class="pt-2">
+                                                                            <h3 class="product-title fs-base mb-2">
+                                                                                <a href="shop-single-v1.html">{{$wishlist->product->title}}</a>
+                                                                            </h3>
+                                                                            <div class="fs-lg text-accent pt-2">
+                                                                                @if($wishlist->product->compare_price > 0)
+                                                                                    <span class="h6 text-underline">
+                                                                                        <del>${{$wishlist->product->compare_price}}</del>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
+                                                                        <button class="btn btn-outline-danger btn-sm" type="button">
+                                                                            <i class="fas fa-trash-alt me-2"></i>Remove
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                            @endforeach
+                        @else
+                            <p>Your wishlist is empty.</p>
                         @endif
-
                     </div>
                 </div>
             </div>
@@ -68,8 +72,6 @@
 
 @section('customJs')
 <script>
-
-
+    // Custom JS can go here
 </script>
-
 @endsection
