@@ -15,6 +15,10 @@
 <section class=" section-11 ">
     <div class="container  mt-5">
         <div class="row">
+            <div class="col-md-12">
+                @include('front.account.common.message')
+
+            </div>
             <div class="col-md-3">
                 @include('front.account.common.sidebar')
             </div>
@@ -30,18 +34,19 @@
                                                                     <div class="d-block d-sm-flex align-items-start text-center text-sm-start">
                                                                         @php
                                                                             $productImage = getProductImage($wishlist->product_id); // Fixed variable name
-                                                                        @endphp
-                                                                        <a class="d-block flex-shrink-0 mx-auto me-sm-4" href="#" style="width: 10rem;">
+                                                                         @endphp
+                                                                        <a class="d-block flex-shrink-0 mx-auto me-sm-4"
+                                                                            href="{{route("front.product", $wishlist->product->slug)}}" style="width: 10rem;">
                                                                             @if (!empty($productImage))
                                                                                 <img src="{{asset('uploads/product/small/' . $productImage->image)}}">
                                                                             @else
                                                                                 <img src="{{asset('admin-assets/img/no-image.png')}}" alt="">
                                                                             @endif
                                                                         </a>
-
                                                                         <div class="pt-2">
                                                                             <h3 class="product-title fs-base mb-2">
-                                                                                <a href="shop-single-v1.html">{{$wishlist->product->title}}</a>
+                                                                                <a
+                                                                                    href="{{route("front.product", $wishlist->product->slug)}}">{{$wishlist->product->title}}</a>
                                                                             </h3>
                                                                             <div class="fs-lg text-accent pt-2">
                                                                                 @if($wishlist->product->compare_price > 0)
@@ -53,7 +58,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="pt-2 ps-sm-3 mx-auto mx-sm-0 text-center">
-                                                                        <button class="btn btn-outline-danger btn-sm" type="button">
+                                                                        <button onclick="removeProduct({{$wishlist->product_id}})"
+                                                                            class="btn btn-outline-danger btn-sm" type="button">
                                                                             <i class="fas fa-trash-alt me-2"></i>Remove
                                                                         </button>
                                                                     </div>
@@ -73,5 +79,20 @@
 @section('customJs')
 <script>
     // Custom JS can go here
+
+    function removeProduct(id) {
+        $.ajax({
+            url: '{{route("account.removeProductFromWishList")}}',
+            type: 'POST',
+            data: { id: id },
+            dataType: 'json',
+            success: function (response) {
+
+                if (response.status == true) {
+                    window.location.href = "{{route('account.wishlist')}}"
+                }
+            }
+        });
+    }
 </script>
 @endsection
