@@ -230,7 +230,14 @@ rangeSlider = $(".js-range-slider").ionRangeSlider({
 
 
         //Sorting Filter
+        var keyword = $("#search").val();
+
+        if(keyword.length > 0 ){
+            url += '&search='+keyword;
+
+        }
         url += '&sort='+$("#sort").val();
+
 
 
         window.location.href = url;
