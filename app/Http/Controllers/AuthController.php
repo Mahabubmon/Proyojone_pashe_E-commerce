@@ -89,7 +89,10 @@ class AuthController extends Controller
 
     public function profile()
     {
-        return view("front.account.profile");
+        $user = User::where('id', Auth::user()->id)->first();
+        return view("front.account.profile", [
+            'user' => $user
+        ]);
 
     }
 
