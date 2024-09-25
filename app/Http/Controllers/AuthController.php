@@ -104,6 +104,15 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email,expected,id',
             'phone' => 'required'
         ]);
+
+        if ($validator->passes()) {
+
+        } else {
+            return response()->json([
+                'status' => false,
+                'errors' => $validator->errors()
+            ]);
+        }
     }
 
     public function logout()

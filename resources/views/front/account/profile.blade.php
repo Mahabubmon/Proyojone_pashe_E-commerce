@@ -32,16 +32,21 @@
                                     <label for="name">Name</label>
                                     <input value="{{$user->name}}" type="text" name="name" id="name"
                                         placeholder="Enter Your Name" class="form-control">
+                                    <p></p>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email">Email</label>
                                     <input value="{{$user->email}}" type="text" name="email" id="email"
                                         placeholder="Enter Your Email" class="form-control">
+                                    <p></p>
+
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone">Phone</label>
                                     <input value="{{$user->phone}}" type="text" name="phone" id="phone"
                                         placeholder="Enter Your Phone" class="form-control">
+                                    <p></p>
+
                                 </div>
                                 <div class="d-flex">
                                     <button class="btn btn-dark">Update</button>
@@ -75,6 +80,15 @@
             data: $(this).serializeArray(),
             dataType: 'json',
             success: function (response) {
+                if (response.status == true) {
+
+                } else {
+                    var errors = response.errors;
+                    if (errors.name) {
+                        $('#name').addClass('is-invalid').siblings('p').html(errors.name)
+                    }
+
+                }
 
             }
         });
