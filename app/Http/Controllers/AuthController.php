@@ -98,7 +98,12 @@ class AuthController extends Controller
 
     public function updateProfile(Request $request)
     {
-
+        $userId = Auth::user()->id;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,expected,id',
+            'phone' => 'required'
+        ]);
     }
 
     public function logout()
