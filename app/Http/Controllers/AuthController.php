@@ -13,19 +13,33 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    //
-
+     /**
+     * Login Action
+     *
+     * 
+     */
     public function login()
     {
 
         return view("front.account.login");
     }
 
+     /**
+     * register Action
+     *
+     * 
+     */
+
     public function register()
     {
         return view("front.account.register");
     }
 
+    /**
+     * processRegister Action
+     *
+     * 
+     */
 
     public function processRegister(Request $request)
     {
@@ -56,6 +70,12 @@ class AuthController extends Controller
         }
     }
 
+    
+    /**
+     * authenticate Action
+     *
+     * 
+     */
     public function authenticate(Request $request)
     {
 
