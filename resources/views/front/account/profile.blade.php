@@ -85,7 +85,22 @@
                 } else {
                     var errors = response.errors;
                     if (errors.name) {
-                        $('#name').addClass('is-invalid').siblings('p').html(errors.name)
+                        $('#name').addClass('is-invalid').siblings('p').html(errors.name);
+                    }else{
+                        $('#name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
+
+                    }
+                    if (errors.email) {
+                        $('#email').addClass('is-invalid').siblings('p').html(errors.email);
+                    }else{
+                        $('#email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
+
+                    }
+                    if (errors.phone) {
+                        $('#phone').addClass('is-invalid').siblings('p').html(errors.phone);
+                    }else{
+                        $('#phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
+
                     }
 
                 }
