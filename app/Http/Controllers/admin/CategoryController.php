@@ -62,7 +62,6 @@ class CategoryController extends Controller
                 //Generate image thumbnail
                 $dPath = public_path() . '/uploads/category/thumb/' . $newImageName;
                 $img = Image::make($sPath);
-                // $img->resize(450, 600);
                 $img->fit(450, 600, function ($constraint) {
                     $constraint->upsize();
                 });

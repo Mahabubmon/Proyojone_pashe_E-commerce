@@ -15,7 +15,6 @@ class HomeController extends Controller
         return view("admin.dashboard");
         // $admin = Auth::guard('admin')->user();
 // 
-        // echo "Hello!" . $admin->name . '<a href="' . route('admin.logout') . '">Logout</a>';
     }
 
     public function logout(Request $request)

@@ -72,8 +72,7 @@
                 $("button[type='submit']").prop('disabled', false);
 
                 var errors = response.errors;
-                // console.log(errors);
-                // return false;
+            
                 if (response.status == false) {
                     if (errors.name) {
                         $("#name").siblings("p").addClass('invalid-feedback').html(errors.name);

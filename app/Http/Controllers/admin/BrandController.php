@@ -89,7 +89,6 @@ class BrandController extends Controller
 
         $validator = Validator::make($request->all(), [
             "name" => "required",
-            // "slug" => "required|unique:brands",
             "slug" => "required|unique:brands,slug,'.$brand->id.',id",
 
         ]);
