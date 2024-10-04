@@ -126,6 +126,13 @@ class AuthController extends Controller
         ]);
 
         if ($validator->passes()) {
+            $user = User::find($userId);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->save();  
+
+            session()->flash('success','Profile Updated Successfully');
 
         } else {
             return response()->json([
