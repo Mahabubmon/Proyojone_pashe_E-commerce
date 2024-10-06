@@ -136,8 +136,8 @@ class AuthController extends Controller
 
         } else {
             return response()->json([
-                'status' => false,
-                'errors' => $validator->errors()
+                'status' => true,
+                'message' =>'Profile Updated Successfully'
             ]);
         }
     }
