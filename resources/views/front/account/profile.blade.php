@@ -58,6 +58,40 @@
                         </div>
                     </form>
                 </div>
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h2 class="h5 mb-0 pt-2 pb-2">Address</h2>
+                    </div>
+                    <form action="" name="profileForm" id="profileForm">
+                        <div class="card-body p-4">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label for="name">Name</label>
+                                    <input value="{{$user->name}}" type="text" name="name" id="name"
+                                        placeholder="Enter Your Name" class="form-control">
+                                    <p></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input value="{{$user->email}}" type="text" name="email" id="email"
+                                        placeholder="Enter Your Email" class="form-control">
+                                    <p></p>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone">Phone</label>
+                                    <input value="{{$user->phone}}" type="text" name="phone" id="phone"
+                                        placeholder="Enter Your Phone" class="form-control">
+                                    <p></p>
+
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn btn-dark">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
