@@ -62,26 +62,80 @@
                     <div class="card-header">
                         <h2 class="h5 mb-0 pt-2 pb-2">Address</h2>
                     </div>
-                    <form action="" name="profileForm" id="profileForm">
+                    <form action="" name="addressFrom" id="addressFrom">
                         <div class="card-body p-4">
                             <div class="row">
-                                <div class="mb-3">
-                                    <label for="name">Name</label>
-                                    <input value="{{$user->name}}" type="text" name="name" id="name"
-                                        placeholder="Enter Your Name" class="form-control">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name">First Name</label>
+                                    <input value="{{$user->name}}" type="text" name="first_name" id="first_name"
+                                        placeholder="Enter Your first name" class="form-control">
                                     <p></p>
                                 </div>
-                                <div class="mb-3">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name">Last Name</label>
+                                    <input value="{{$user->name}}" type="text" name="last name" id="last_name"
+                                        placeholder="Enter Your last_name" class="form-control">
+                                    <p></p>
+                                </div>
+                                <div class="col-md-6 mb-3">
                                     <label for="email">Email</label>
                                     <input value="{{$user->email}}" type="text" name="email" id="email"
                                         placeholder="Enter Your Email" class="form-control">
                                     <p></p>
 
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="mobile">Mobile</label>
+                                    <input value="{{$user->phone}}" type="text" name="mobile" id="mobile"
+                                        placeholder="Enter Your mobile" class="form-control">
+                                    <p></p>
+
+                                </div>
                                 <div class="mb-3">
-                                    <label for="phone">Phone</label>
-                                    <input value="{{$user->phone}}" type="text" name="phone" id="phone"
-                                        placeholder="Enter Your Phone" class="form-control">
+                                    <label for="country">Country</label>
+                                    <select name="country_id" id="country_id" class="form-control">
+                                        <option value="">Select a Country</option>
+                                        @if ($countries->isNotEmpty())
+                                        @foreach ($countries as $country)
+                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                        @endforeach
+                                        
+                                        @endif
+                                    </select>
+                                    <p></p>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address">Address</label>
+                                    <textarea name="address" id="address" cols="30" rows="5" class="form-control" ></textarea>
+                                    <p></p>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="apartment">Apartment</label>
+                                    <input value="{{$user->phone}}" type="text" name="apartment" id="apartment"
+                                        placeholder="Enter Your Apartment" class="form-control">
+                                    <p></p>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="city">City</label>
+                                    <input value="{{$user->phone}}" type="text" name="city" id="city"
+                                        placeholder="Enter Your city" class="form-control">
+                                    <p></p>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="state">State</label>
+                                    <input value="{{$user->phone}}" type="text" name="state" id="state"
+                                        placeholder="Enter Your State" class="form-control">
+                                    <p></p>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="zip">Zip</label>
+                                    <input value="{{$user->phone}}" type="text" name="zip" id="zip"
+                                        placeholder="Enter Your Zip" class="form-control">
                                     <p></p>
 
                                 </div>

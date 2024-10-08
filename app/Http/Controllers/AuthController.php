@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
@@ -109,9 +110,11 @@ class AuthController extends Controller
 
     public function profile()
     {
+        $countries = Country::orderBy('name','ASC')->get();
         $user = User::where('id', Auth::user()->id)->first();
         return view("front.account.profile", [
-            'user' => $user
+            'user' => $user,
+            'countries' => $countries
         ]);
 
     }
