@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\CustomerAddress;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
@@ -110,11 +111,17 @@ class AuthController extends Controller
 
     public function profile()
     {
+        $userId = Auth::user()->id;
+
         $countries = Country::orderBy('name','ASC')->get();
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id',  $userId)->first();
+
+        $address =  CustomerAddress::where('user_id',$userId)->first();
+
         return view("front.account.profile", [
             'user' => $user,
-            'countries' => $countries
+            'countries' => $countries,
+            'address' => $address,
         ]);
 
     }

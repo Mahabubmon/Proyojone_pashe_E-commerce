@@ -67,26 +67,26 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="name">First Name</label>
-                                    <input value="{{$user->name}}" type="text" name="first_name" id="first_name"
+                                    <input value="{{(!empty($address)) ? $address->first_name : ''}}" type="text" name="first_name" id="first_name"
                                         placeholder="Enter Your first name" class="form-control">
                                     <p></p>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="name">Last Name</label>
-                                    <input value="{{$user->name}}" type="text" name="last name" id="last_name"
+                                    <input value="{{(!empty($address)) ? $address->last_name : ''}}" type="text" name="last name" id="last_name"
                                         placeholder="Enter Your last_name" class="form-control">
                                     <p></p>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email">Email</label>
-                                    <input value="{{$user->email}}" type="text" name="email" id="email"
+                                    <input value="{{(!empty($address)) ? $address->email : ''}}" type="text" name="email" id="email"
                                         placeholder="Enter Your Email" class="form-control">
                                     <p></p>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="mobile">Mobile</label>
-                                    <input value="{{$user->phone}}" type="text" name="mobile" id="mobile"
+                                    <input value="{{(!empty($address)) ? $address->mobile : ''}}" type="text" name="mobile" id="mobile"
                                         placeholder="Enter Your mobile" class="form-control">
                                     <p></p>
 
@@ -97,7 +97,7 @@
                                         <option value="">Select a Country</option>
                                         @if ($countries->isNotEmpty())
                                         @foreach ($countries as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
+                                        <option {{(!empty($address) && $address->country_id == $country->id ) ?'selected' : ''}} value="{{$country->id}}">{{$country->name}}</option>
                                         @endforeach
                                         
                                         @endif
@@ -107,34 +107,34 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="address">Address</label>
-                                    <textarea name="address" id="address" cols="30" rows="5" class="form-control" ></textarea>
+                                    <textarea name="address" id="address" cols="30" rows="5" class="form-control" >{{(!empty($address)) ? $address->address : ''}}</textarea>
                                     <p></p>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="apartment">Apartment</label>
-                                    <input value="{{$user->phone}}" type="text" name="apartment" id="apartment"
+                                    <input value="{{(!empty($address)) ? $address->apartment : ''}}" type="text" name="apartment" id="apartment"
                                         placeholder="Enter Your Apartment" class="form-control">
                                     <p></p>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="city">City</label>
-                                    <input value="{{$user->phone}}" type="text" name="city" id="city"
+                                    <input value="{{(!empty($address)) ? $address->city : ''}}" type="text" name="city" id="city"
                                         placeholder="Enter Your city" class="form-control">
                                     <p></p>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="state">State</label>
-                                    <input value="{{$user->phone}}" type="text" name="state" id="state"
+                                    <input value="{{(!empty($address)) ? $address->state : ''}}" type="text" name="state" id="state"
                                         placeholder="Enter Your State" class="form-control">
                                     <p></p>
 
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="zip">Zip</label>
-                                    <input value="{{$user->phone}}" type="text" name="zip" id="zip"
+                                    <input value="{{(!empty($address)) ? $address->zip : ''}}" type="text" name="zip" id="zip"
                                         placeholder="Enter Your Zip" class="form-control">
                                     <p></p>
 
