@@ -113,6 +113,8 @@ class AuthController extends Controller
     {
         $userId = Auth::user()->id;
 
+        
+
         $countries = Country::orderBy('name','ASC')->get();
         $user = User::where('id',  $userId)->first();
 
@@ -133,6 +135,40 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,expected,id',
             'phone' => 'required'
+        ]);
+
+        if ($validator->passes()) {
+            $user = User::find($userId);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->save();  
+
+            session()->flash('success','Profile Updated Successfully');
+
+        } else {
+            return response()->json([
+                'status' => true,
+                'message' =>'Profile Updated Successfully'
+            ]);
+        }
+    }
+    public function updateAddress(Request $request)
+    {
+        $userId = Auth::user()->id;
+
+        $validator = Validator::make($request->all(), [
+
+            'first_name' => 'required|min:5',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'country_id' => 'required',
+            'address' => 'required|min:30',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'mobile' => 'required'
+
         ]);
 
         if ($validator->passes()) {

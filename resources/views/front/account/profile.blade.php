@@ -213,6 +213,57 @@
         });
 
     });
+    $("addressFrom").submit(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            url: '{{route('account.updateAddress')}}',
+            type: 'post'
+            data: $(this).serializeArray(),
+            dataType: 'json',
+            success: function (response) {
+                if (response.status == true) {
+
+                    
+                    $('#name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
+                    $('#email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
+                    $('#phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
+                    
+                    window.location.href = '{{route('account.profile')}}'
+
+
+                } else {
+                    var errors = response.errors;
+                    //validation msg name
+                    if (errors.name) {
+                        $('#name').addClass('is-invalid').siblings('p').html(errors.name);
+                    } else {
+                        $('#name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
+
+                    }
+                    //validation msg email
+
+                    if (errors.email) {
+                        $('#email').addClass('is-invalid').siblings('p').html(errors.email);
+                    } else {
+                        $('#email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
+
+                    }
+                    //validation msg phone
+
+                    if (errors.phone) {
+                        $('#phone').addClass('is-invalid').siblings('p').html(errors.phone);
+                    } else {
+                        $('#phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
+
+                    }
+
+                }
+
+            }
+        });
+
+    });
 </script>
 
 @endsection
