@@ -174,9 +174,9 @@
                 if (response.status == true) {
 
                     
-                    $('#name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
-                    $('#email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
-                    $('#phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
+                    $('#profileForm #name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
+                    $('#profileForm #email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
+                    $('#profileForm #phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
                     
                     window.location.href = '{{route('account.profile')}}'
 
@@ -185,15 +185,15 @@
                     var errors = response.errors;
                     //validation msg name
                     if (errors.name) {
-                        $('#name').addClass('is-invalid').siblings('p').html(errors.name);
+                        $('#profileForm #name').addClass('is-invalid').siblings('p').html(errors.name);
                     } else {
-                        $('#name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
+                        $('#profileForm #name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
 
                     }
                     //validation msg email
 
                     if (errors.email) {
-                        $('#email').addClass('is-invalid').siblings('p').html(errors.email);
+                        $('#profileForm #email').addClass('is-invalid').siblings('p').html(errors.email);
                     } else {
                         $('#email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
 
@@ -201,9 +201,9 @@
                     //validation msg phone
 
                     if (errors.phone) {
-                        $('#phone').addClass('is-invalid').siblings('p').html(errors.phone);
+                        $('#profileForm #phone').addClass('is-invalid').siblings('p').html(errors.phone);
                     } else {
-                        $('#phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
+                        $('#profileForm #phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
 
                     }
 
@@ -235,26 +235,32 @@
                 } else {
                     var errors = response.errors;
                     //validation msg name
-                    if (errors.name) {
-                        $('#name').addClass('is-invalid').siblings('p').html(errors.name);
+                    if (errors.first_name) {
+                        $('#addressFrom #first_name').addClass('is-invalid').siblings('p').html(errors.first_name);
                     } else {
-                        $('#name').removeClass('is-invalid').siblings('p').html(errors.name).removeClass('invalid-feedback');
+                        $('#addressFrom #first_name').removeClass('is-invalid').siblings('p').html(errors.first_name).removeClass('invalid-feedback');
 
                     }
                     //validation msg email
 
-                    if (errors.email) {
-                        $('#email').addClass('is-invalid').siblings('p').html(errors.email);
+                    if (errors.last_name) {
+                        $('#addressFrom #last_name').addClass('is-invalid').siblings('p').html(errors.last_name);
                     } else {
-                        $('#email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
+                        $('#addressFrom #last_name').removeClass('is-invalid').siblings('p').html(errors.last_name).removeClass('invalid-feedback');
+
+                    }
+                    if (errors.email) {
+                        $('#addressFrom #email').addClass('is-invalid').siblings('p').html(errors.email);
+                    } else {
+                        $('#addressFrom #email').removeClass('is-invalid').siblings('p').html(errors.email).removeClass('invalid-feedback');
 
                     }
                     //validation msg phone
 
                     if (errors.phone) {
-                        $('#phone').addClass('is-invalid').siblings('p').html(errors.phone);
+                        $('#addressFrom #mobile').addClass('is-invalid').siblings('p').html(errors.mobile);
                     } else {
-                        $('#phone').removeClass('is-invalid').siblings('p').html(errors.phone).removeClass('invalid-feedback');
+                        $('#addressFrom #mobile').removeClass('is-invalid').siblings('p').html(errors.mobile).removeClass('invalid-feedback');
 
                     }
 
