@@ -172,13 +172,23 @@ class AuthController extends Controller
         ]);
 
         if ($validator->passes()) {
-            $user = User::find($userId);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->save();  
+            CustomerAddress::updateOrCreate(
+                ['user_id' =>$userId],
+                [
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'email' => $request->email,
+                    'mobile' => $request->mobile,
+                    'country_id' => $request->country_id,
+                    'address' => $request->address,
+                    'apartment' => $request->apartment,
+                    'city' => $request->city,
+                    'state' => $request->state,
+                    'zip' => $request->zip
+                ]
+            );
 
-            session()->flash('success','Profile Updated Successfully');
+            session()->flash('success','Address Updated Successfully');
 
         } else {
             return response()->json([
