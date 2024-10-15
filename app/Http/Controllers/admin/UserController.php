@@ -63,4 +63,20 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function edit(Request $request, $id){
+
+        $user = User::find($id);
+
+        if($user == null){
+            $message = 'User not found';
+            session()->flash('error',$message);
+            return redirect()->route('users.index');
+            
+
+        }
+
+        return view('admin.users.edit');
+
+    }
 }
