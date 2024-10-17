@@ -80,13 +80,10 @@ class UserController extends Controller
 
     }
 
+    //Update function for user
     public function update(Request $request,$id)
     {
         $user = User::find($id);
-
-        
-
-
         if($user == null){
             $message = 'User not found';
             session()->flash('error',$message);
@@ -114,7 +111,7 @@ class UserController extends Controller
             }
             $user->save();
 
-            $message = 'User added successfully';
+            $message = 'User Upadet successfully';
 
             session()->flash('success',$message);
             return response()->json([
