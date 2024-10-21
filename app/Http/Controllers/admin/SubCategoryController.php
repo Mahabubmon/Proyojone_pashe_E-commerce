@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Validator;
 class SubCategoryController extends Controller
 {
     //
+     /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function index(Request $request)
     {
         $subCategories = SubCategory::select('sub_categories.*', 'categories.name as categoryName')->latest('sub_categories.id')->leftJoin('categories', 'categories.id', 'sub_categories.category_id');

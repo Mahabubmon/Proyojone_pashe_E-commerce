@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     //
     /**
- * BrandService
+ * 
  * @author Mahabub Mon<mahabubmon@gmail.com>
  */
     public function index(Request $request)
