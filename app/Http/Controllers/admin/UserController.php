@@ -49,6 +49,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $request->phone;
+            $user->phone = $request->status;
             $user->password = Hash::make($request->password);
             //    $user->status = $request->status; 
             $user->save();
@@ -112,6 +113,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $request->phone;
+            $user->phone = $request->status;
             if($request->password != ''){
 
                 $user->password = Hash::make($request->password);
@@ -131,5 +133,29 @@ class UserController extends Controller
                 'errors' => $validator->errors()
             ]);
         }
+    }
+
+    public function destroy($id){
+
+        $user = User::find($id);
+
+        if($user == null){
+            $message = 'User not found';
+            session()->flash('error',$message);
+            return response()->json([
+                'status' => true,
+                'message' => $message
+            ]);
+            
+
+        }
+
+        $user->delete();
+        $message = 'User Deleted Successfully';
+        session()->flash('success',$message);
+        return response()->json([
+            'status' => true,
+            'message' => $message
+        ]);
     }
 }
