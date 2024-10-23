@@ -11,6 +11,10 @@ use App\Models\DiscountCoupon;
 class DiscountCodeController extends Controller
 {
     //
+    /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function index(Request $request)
     {
         $discountCoupons = DiscountCoupon::latest();

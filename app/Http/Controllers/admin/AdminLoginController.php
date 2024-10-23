@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminLoginController extends Controller
 {
-    //
+     //
+    /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function index()
     {
         return view("admin.login");
