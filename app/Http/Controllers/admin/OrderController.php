@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    //
+    /**
+     * 
+     * @author Mahabubur Rahman <mahabubmon@gmail.com>
+     */
     public function index(Request $request)
     {
         $orders = Order::latest('orders.created_at')->select('orders.*', 'users.name', 'users.email');

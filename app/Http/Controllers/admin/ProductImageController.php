@@ -10,7 +10,10 @@ use Image;
 
 class ProductImageController extends Controller
 {
-    //
+   /**
+ * 
+ * @author Mahabubur Rahman <mahabubmon@gmail.com>
+ */
     public function update(Request $request)
     {
 

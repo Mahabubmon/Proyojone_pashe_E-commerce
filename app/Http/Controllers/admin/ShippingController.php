@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Validator;
 
 class ShippingController extends Controller
 {
-    //
+    /**
+ * 
+ * @author Mahabubur Rahman <mahabubmon@gmail.com>
+ */
     public function create()
     {
         $countries = Country::get();

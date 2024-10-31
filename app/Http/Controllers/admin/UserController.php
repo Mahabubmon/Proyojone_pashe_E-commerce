@@ -10,7 +10,7 @@ use Validator;
 
 class UserController extends Controller
 {
-    //
+    
     /**
  * 
  * @author Mahabub Mon<mahabubmon@gmail.com>

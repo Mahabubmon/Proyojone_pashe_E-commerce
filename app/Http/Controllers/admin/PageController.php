@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    //
+    
+    /**
+ * 
+ * @author Mahabubur Rahman <mahabubmon@gmail.com>
+ */
     public function index(){
 
     }
