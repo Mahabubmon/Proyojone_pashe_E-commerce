@@ -20,6 +20,10 @@ class AuthController extends Controller
      *
      * 
      */
+     /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function login()
     {
 
