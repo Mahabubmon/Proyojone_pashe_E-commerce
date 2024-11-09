@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
-    //
+    /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
+
     public function index()
     {
 
