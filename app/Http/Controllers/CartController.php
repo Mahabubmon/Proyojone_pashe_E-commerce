@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Validator;
 class CartController extends Controller
 {
 
+        /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
+
 
     public function addToCart(Request $request)
     {
