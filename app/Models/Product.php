@@ -9,6 +9,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * 
+     * @author Mahabub Mon<mahabubmon@gmail.com>
+     */
     public function product_images()
     {
         return $this->hasMany(ProductImage::class);

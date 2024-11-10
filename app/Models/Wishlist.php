@@ -11,6 +11,11 @@ class Wishlist extends Model
 
     public $fillable = ['user_id', 'product_id'];
 
+    /**
+     * 
+     * @author Mahabub Mon<mahabubmon@gmail.com>
+     */
+
 
     public function product()
     {
