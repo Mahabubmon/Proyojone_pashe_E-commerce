@@ -8,6 +8,10 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
+    /**
+     * 
+     * @author Mahabub Mon<mahabubmon@gmail.com>
+     */
     public function up(): void
     {
         Schema::create('brands', function (Blueprint $table) {
