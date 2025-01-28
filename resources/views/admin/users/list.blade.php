@@ -87,7 +87,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="#" onclick="deleteuser({{$user->id}})" class="text-danger w-4 h-4 mr-1">
+                                <a href="#" onclick="deleteUser({{$user->id}})" class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -125,7 +125,7 @@
 
 
 <script>
-    function deleteuser(id){
+    function deleteUser(id){
 
 
     var url ='{{route('users.delete','ID')}}';

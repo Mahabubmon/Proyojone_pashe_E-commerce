@@ -16,7 +16,10 @@ use Image;
 
 class ProductController extends Controller
 {
-    //
+   /**
+ * 
+ * @author Mahabubur Rahman <mahabubmon@gmail.com>
+ */
     public function index(Request $request)
     {
         $products = Product::latest('id')->with('product_images');

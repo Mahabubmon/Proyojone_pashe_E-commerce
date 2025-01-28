@@ -6,9 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
+     /**
+     * 
+     * @author Mahabub Mon<mahabubmon@gmail.com>
+     */
+
     /**
      * Run the migrations.
      */
+
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {

@@ -10,7 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class BrandController extends Controller
 {
-    //
+     //
+    /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function index(Request $request)
     {
         $brands = Brand::latest('id');

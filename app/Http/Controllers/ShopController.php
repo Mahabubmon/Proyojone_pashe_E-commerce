@@ -10,7 +10,11 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    //
+    
+    /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function index(Request $request, $categorySlug = null, $subCategorySlug = null)
     {
         $categorySelected = '';
@@ -90,10 +94,6 @@ class ShopController extends Controller
 
 
         $products = $products->paginate(6);
-
-        // $products = Product::orderBy('id', 'DESC')
-        //     ->where('status', 1)
-        //     ->get();
 
         $data['categories'] = $categories;
         $data['brands'] = $brands;

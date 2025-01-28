@@ -14,7 +14,11 @@ use Image;
 
 class CategoryController extends Controller
 {
-    //
+     //
+    /**
+ * 
+ * @author Mahabub Mon<mahabubmon@gmail.com>
+ */
     public function index(Request $request)
     {
         $categories = Category::latest();
